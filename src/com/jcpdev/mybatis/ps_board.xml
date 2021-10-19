@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ps_board">
+	
+	<insert id="psb_insert" parameterType="dto.Ps_board">	<!-- 펫시터 테이블 정보 insert -->
+		insert into ps_board (idx, nick, title, content, ps_sdate, ps_fdate, p_size) 
+		values (#{idx}, #{nick}, #{title}, #{content}, #{ps_sdate}, #{ps_fdate}, #{p_size})
+	</insert>
+	
+	<insert id="g_insert" parameterType="dto.Gallery">	<!-- 펫시터 게시판 사진 insert -->
+		insert into gallery (psb_idx, g_fname) values (#{psb_idx}, #{g_fname})
+	</insert>
+	
+	<select id="g_getList" parameterType="int" resultType="dto.Gallery">	<!-- 펫시터 게시판 사진 불러오기 -->
+		select * from gallery where psb_idx = #{psb_idx}
+	</select>
+	
+	<select id="ps_getList" parameterType="int" resultType="dto.Ps_board">	<!-- 펫시터 게시글 불러오기 -->
+		select * from ps_board where psb_idx = #{psb_idx}
+	</select>
+	
+	<select id="p_getList" parameterType="int" resultType="dto.Pet">	<!-- 펫정보 불러오기 -->
+		select * from pet where idx = #{idx}
+	</select>
+	
+	<select id="r_board_getList" parameterType="String" resultType="dto.R_board">	<!-- 후기게시판 불러오기 -->
+		select * from r_board where ps_nick = #{ps_nick}
+	</select>
+	
+	<select id="m_getList" parameterType="int" resultType="dto.Member">	<!-- 펫시터 정보 불러오기 -->
+		select * from member where idx = #{idx}
+	</select>
+	
+	<select id="rate" parameterType="int" resultType="dto.Rate">	<!-- 펫시터 평점 불러오기 -->
+		select * from rate where idx = #{idx}
+	</select>
+	
+	<insert id="psr_insert" parameterType="dto.Reservation">	<!-- 예약내역 저장하기 -->
+		insert into reservation (idx, id, nick, ps_idx, ps_nick, pay, s_date, f_date, r_date, p_date) 
+		values (#{idx}, #{id}, #{nick}, #{ps_idx}, #{ps_nick}, #{pay}, #{s_date}, #{f_date}, #{r_date}, #{p_date})
+	</insert>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
