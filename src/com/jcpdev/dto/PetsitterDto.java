@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ps_board {
+public class PetsitterDto {
 	private int psb_idx;
 	private int idx;
 	private String title;
@@ -19,6 +19,6 @@ public class Ps_board {
 	private String p_size;
 	private String comment;
 	private String terms;
-	private String g_fname;
+	private String g_fname;	
 	private String m_addr;
 }

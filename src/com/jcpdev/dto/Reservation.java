@@ -12,10 +12,7 @@ import lombok.NoArgsConstructor;
 public class Reservation {
 	private int r_idx;
 	private int idx;
-	private String id;
-	private String nick;
 	private int ps_idx;
-	private String ps_nick;
 	private int pay;
 	private Date s_date;
 	private Date f_date;

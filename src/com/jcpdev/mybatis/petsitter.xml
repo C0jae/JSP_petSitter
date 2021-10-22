@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="petsitter"> <!-- namespace : 일종의 식별역할의 변수 -->
+	
+	<select id ="PetSitter_Select" parameterType="dto.AdopttimeDto_second" resultType="dto.PetsitterDto">
+		select * from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') and (#{wdate_start} >= ps_sdate and ps_fdate>= #{wdate_final}) and terms LIKE CONCAT('%', #{terms}, '%') order by idx desc limit #{StartNo},#{pageSize}
+	</select>
+	
+	<select id ="petsitter_Select_one" parameterType="int" resultType="dto.PetsitterDto">
+		select * from ps_board where idx = #{idx}  
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="dto.AdopttimeDto">
+		select count(*) from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') and (#{wdate_start} >= ps_sdate and ps_fdate>= #{wdate_final}) and terms LIKE CONCAT('%', #{terms}, '%')
+		 
+	</select>
+</mapper>
+<!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
+     #{ } : 무조건 문자열(' '기호사용)로 중괄호 안의 값을 처리합니다.
+     parameterType="java.util.Map" -->
+

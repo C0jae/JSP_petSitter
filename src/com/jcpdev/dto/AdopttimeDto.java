@@ -1,5 +1,6 @@
 package dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rate {
-	private int idx;
-	private int rate_total;
-	private int freq;
-	private double rate;
+public class AdopttimeDto {
+	private String m_addr;
+	private String wdate_start;
+	private String wdate_final;
+	private String terms;
 }

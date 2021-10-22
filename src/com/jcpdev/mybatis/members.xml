@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="members">
+	<select id="Members_selectAll" resultType="dto.Member" parameterType="java.util.Map">
+		select * from member
+	</select>
+	
+  	<select id="Members_selectOne" resultType="dto.Member" parameterType="int">
+		select * from member where idx=#{idx}
+	</select>
+
+	<insert id="Members_insert" parameterType="dto.Member" useGeneratedKeys="true"
+				keyColumn="idx" keyProperty="idx">
+		insert into member (name,id,password,nick,gender,birth,tel,m_addr,s_addr,point,p_auth,license,work_date,home)
+		values (#{name},#{id},#{password},#{nick},#{gender},#{birth},#{tel},#{m_addr},#{s_addr},#{point},#{p_auth},#{license},#{work_date},#{home})
+	</insert>
+	<update id="Members_update" parameterType="dto.Member">
+		update member set password=#{password},tel=#{tel},m_addr=#{m_addr},s_addr=#{s_addr} 
+		where idx=#{idx}
+	</update>
+	<delete id="Members_delete" parameterType="int">
+	 	delete from member where idx=#{idx}
+	</delete>
+	<update id="update_point" parameterType="dto.Member">
+		update member set point= point+#{point} where idx=#{idx}
+	</update>
+	<select id="loginCheck" parameterType="java.util.Map" resultType="dto.SessionDto">
+		select * from member where id=#{id} and password=#{password}
+	</select>
+</mapper>

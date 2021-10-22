@@ -6,29 +6,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Ps_boardDao;
+import dao.MembersDao;
 import dto.Member;
 
-public class Ps_board_writeAction implements Action {
+public class MemberDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ActionForward forward = new ActionForward();
-		Ps_boardDao dao = Ps_boardDao.getInstance();
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		Member m_getLIst = dao.m_getList(idx);	// 회원정보 불러오기(펫시터)
-		request.setAttribute("petsitter", m_getLIst);
+		MembersDao dao = MembersDao.getInstance();
 		
+		Member dto = dao.select(idx);
 		
-		forward.isRedirect = false;
-		forward.url = "./community/ps_board_write.jsp";
-		
-		
-		
-		return forward;
+		request.setAttribute("dto", dto);
+		ActionForward foward = new ActionForward();
+		foward.isRedirect = false;
+		foward.url="member/memberdetail.jsp";
+		return foward;
 	}
 
 }

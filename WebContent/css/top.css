@@ -1,0 +1,169 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
+
+a.home{
+	font-family: 'Gugi', cursive;
+	font-size: 2.0em;
+	text-align: center;
+	color: #aabb97;				/* #dcedc8 */
+	position: fixed;
+	left: 10%;
+	top: 2%;
+}
+a.menu {   
+    text-decoration: none;
+    font-family: 'Gugi', cursive;
+	font-size: 1.0 em;
+	text-align: center;
+	color: rgb(57, 60, 71);
+	
+}
+.navMenu {
+  position: fixed;
+  top: 5%;
+  left: 40%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.navMenu a {
+  color: rgb(57, 60, 71);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.navMenu a:hover {
+  color: #dcedc8;
+  background-color: #aabb97;
+  border-radius: 4px;
+}
+.navMenu .dot {
+  width: 6px;
+  height: 6px;
+  background: #dcedc8;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transform: translateX(30px);
+  transform: translateX(30px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.navMenu a:nth-child(1):hover ~ .dot {
+  -webkit-transform: translateX(50px);
+  transform: translateX(50px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(2):hover ~ .dot {
+  -webkit-transform: translateX(155px);
+  transform: translateX(155px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(3):hover ~ .dot {
+  -webkit-transform: translateX(260px);
+  transform: translateX(260px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(4):hover ~ .dot {
+  -webkit-transform: translateX(365px);
+  transform: translateX(365px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}  
+
+
+@media screen and (max-width:768px) {
+    .container {
+        flex-direction: column;
+    }
+    .container > li {
+        text-align: center;
+    }
+}
+html,body {
+    height: 100%;
+}
+
+
+.login{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 110px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.register{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 20px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.mlist{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 110px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.logout{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 20px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.infor{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 350px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.point{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 200px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+	
+.navMenu button {
+  color: rgb(57, 60, 71);
+  font-family: 'Gugi', cursive;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border: 0;
+  outline: 0;
+  background: white;
+  cursor: pointer;
+}
+
+.navMenu button:hover {
+  color: #dcedc8;
+  background-color: #aabb97;
+  border-radius: 4px;
+}

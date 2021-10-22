@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>펫시터</title>
 </head>
+<link rel="stylesheet" href="./css/flexbox2.css?v=3">
 <body>
-
+<%@ include file="top.jsp" %>
 <section>
-	<a href="ps_board_write.do">펫시터 글 게시</a>
-	<a href="ps_board_read.do">펫시터 글 게시글 보기(psb_idx = 7 임시고정)</a>
+
 </section>
 </body>
 </html>

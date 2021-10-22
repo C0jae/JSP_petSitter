@@ -1,15 +1,15 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import dto.Gallery;
 import dto.Member;
 import dto.Pet;
 import dto.Ps_board;
-import dto.Rate;
+import dto.R_board;
 import dto.Reservation;
 import mybatis.SqlSessionBean;
 
@@ -31,21 +31,6 @@ public class Ps_boardDao {
 		mapper.close();
 	}
 	
-	public void g_insert(Gallery dto) {	// 펫시터 게시글 사진 저장
-		SqlSession mapper = factory.openSession();
-		mapper.insert("ps_board.g_insert", dto);
-		mapper.commit();
-		mapper.close();
-	}
-	
-	public List<Gallery> g_getList(int psb_idx) {	// 펫시터 게시글 사진 불러오기
-		List<Gallery> list = null;
-		SqlSession mapper = factory.openSession();
-		list = mapper.selectList("ps_board.g_getList", psb_idx);
-		mapper.close();
-		return list;
-	}
-	
 	public Ps_board ps_getList(int psb_idx) {	// 펫시터 게시글 불러오기
 		SqlSession mapper = factory.openSession();
 		Ps_board dto = mapper.selectOne("ps_board.ps_getList", psb_idx);
@@ -60,23 +45,51 @@ public class Ps_boardDao {
 		return list;
 	}
 	
-	public Member m_getList(int idx) {	// 펫시터 정보 불러오기
+	public Member m_getList(int idx) {	// 회원정보 불러오기
 		SqlSession mapper = factory.openSession();
 		Member dto = mapper.selectOne("ps_board.m_getList", idx);
 		mapper.close();
 		return dto;
 	}
 	
-	public Rate rate(int idx) {	// 펫시터 평점 불러오기
+	public R_board rate(String ps_nick) {	// 펫시터 평점 불러오기
 		SqlSession mapper = factory.openSession();
-		Rate dto = mapper.selectOne("ps_board.rate", idx);
+		R_board dto = mapper.selectOne("ps_board.rate", ps_nick);
 		mapper.close();
 		return dto;
 	}
 	
-	public void psr_insert(Reservation dto) {
+	public R_board rateCnt(String ps_nick) {	// 펫시터 후기 갯수 불러오기
+		SqlSession mapper = factory.openSession();
+		R_board dto = mapper.selectOne("ps_board.rateCnt", ps_nick);
+		mapper.close();
+		return dto;
+	}
+	
+	public void psr_insert(Reservation dto) {		// 예약테블에 insert
 		SqlSession mapper = factory.openSession();
 		mapper.insert("ps_board.psr_insert", dto);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public void plusPoint(Map<String, Integer> map) {	// 펫시터 포인트 증가
+		SqlSession mapper = factory.openSession();
+		mapper.update("ps_board.plusPoint", map);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public void minusPoint(Map<String, Integer> map) {	// 예약자 포인트 감소
+		SqlSession mapper = factory.openSession();
+		mapper.update("ps_board.minusPoint", map);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public void plusIncome(Map<String, Integer> map) {	// 거래에 따른 수익 insert
+		SqlSession mapper = factory.openSession();
+		mapper.update("ps_board.plusIncome", map);
 		mapper.commit();
 		mapper.close();
 	}

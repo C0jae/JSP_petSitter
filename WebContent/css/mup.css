@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+table {
+	width : 60%;
+	margin : auto;
+	
+}
+
+div {
+	font-family: 'Gugi', cursive;
+	font-size:1.2em;
+	width: 1000px;
+	height: 400px;
+	color: black;
+	padding: 120px;
+	margin: 100px auto;
+}

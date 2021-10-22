@@ -6,16 +6,16 @@
 <mapper namespace="ps_board">
 	
 	<insert id="psb_insert" parameterType="dto.Ps_board">	<!-- 펫시터 테이블 정보 insert -->
-		insert into ps_board (idx, nick, title, content, ps_sdate, ps_fdate, p_size) 
-		values (#{idx}, #{nick}, #{title}, #{content}, #{ps_sdate}, #{ps_fdate}, #{p_size})
+		insert into ps_board (idx, title, content, ps_sdate, ps_fdate, p_size, comment, terms, g_fname, m_addr) 
+		values (#{idx}, #{title}, #{content}, #{ps_sdate}, #{ps_fdate}, #{p_size}, #{comment}, #{terms}, #{g_fname}, #{m_addr})
 	</insert>
 	
-	<insert id="g_insert" parameterType="dto.Gallery">	<!-- 펫시터 게시판 사진 insert -->
+	<!-- <insert id="g_insert" parameterType="dto.Gallery">	펫시터 게시판 사진 insert
 		insert into gallery (psb_idx, g_fname) values (#{psb_idx}, #{g_fname})
-	</insert>
+	</insert> -->
 	
-	<select id="g_getList" parameterType="int" resultType="dto.Gallery">	<!-- 펫시터 게시판 사진 불러오기 -->
-		select * from gallery where psb_idx = #{psb_idx}
+	<select id="g_getList" parameterType="int" resultType="dto.Ps_board">	<!-- 펫시터 게시판 사진 불러오기 -->
+		select * from ps_board where psb_idx = #{psb_idx}
 	</select>
 	
 	<select id="ps_getList" parameterType="int" resultType="dto.Ps_board">	<!-- 펫시터 게시글 불러오기 -->
@@ -26,21 +26,33 @@
 		select * from pet where idx = #{idx}
 	</select>
 	
-	<select id="r_board_getList" parameterType="String" resultType="dto.R_board">	<!-- 후기게시판 불러오기 -->
-		select * from r_board where ps_nick = #{ps_nick}
-	</select>
-	
-	<select id="m_getList" parameterType="int" resultType="dto.Member">	<!-- 펫시터 정보 불러오기 -->
+	<select id="m_getList" parameterType="int" resultType="dto.Member">	<!-- 회원정보 불러오기 -->
 		select * from member where idx = #{idx}
 	</select>
 	
-	<select id="rate" parameterType="int" resultType="dto.Rate">	<!-- 펫시터 평점 불러오기 -->
-		select * from rate where idx = #{idx}
+	<select id="rate" parameterType="String" resultType="dto.R_board">	<!-- 펫시터 평점 불러오기 -->
+		select avg(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick;
+	</select>
+	
+	<select id="rateCnt" parameterType="String" resultType="dto.R_board">	<!-- 펫시터 후기 게시판 갯수 불러오기 -->
+		select count(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick;
 	</select>
 	
 	<insert id="psr_insert" parameterType="dto.Reservation">	<!-- 예약내역 저장하기 -->
-		insert into reservation (idx, id, nick, ps_idx, ps_nick, pay, s_date, f_date, r_date, p_date) 
-		values (#{idx}, #{id}, #{nick}, #{ps_idx}, #{ps_nick}, #{pay}, #{s_date}, #{f_date}, #{r_date}, #{p_date})
+		insert into reservation (idx, ps_idx, pay, s_date, f_date, r_date) 
+		values (#{idx}, #{ps_idx}, #{pay}, #{s_date}, #{f_date}, #{r_date})
+	</insert>
+	
+	<update id="plusPoint" parameterType="java.util.Map">	<!-- 펫시터 포인트 증가 -->
+		update member set point = point + #{money} where idx = #{idx};
+	</update>
+	
+	<update id="minusPoint" parameterType="java.util.Map">	<!-- 예약자 포인트 감소 -->
+		update member set point = point - #{pay} where idx = #{idx};
+	</update>
+	
+	<insert id="plusIncome" parameterType="java.util.Map">	<!-- 거래에 대한 수수료 -->
+		insert into income value(#{idx}, now(), #{vat});
 	</insert>
 	
 	

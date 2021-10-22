@@ -1,5 +1,7 @@
 package dto;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Gallery {
-	private int psb_idx;
-	private String g_name;
-	private String g_fname;
+public class Income {
+	private int idx;
+	private Timestamp p_date;
+	private int income;
 }
