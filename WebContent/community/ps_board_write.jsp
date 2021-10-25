@@ -72,9 +72,8 @@
 </head>
 <body>
 <%@ include file="../top.jsp" %>
-<br><br><br><br><hr>
+<br><br><br><br>
 <h1 style="color: #aabb97;">펫시터 게시글 작성</h1>
-<hr>
 <form method="post" action="./ps_board_save.do" enctype="multipart/form-data">
 	<input type="hidden" name="idx" value="${user.idx}">
 	<table style="height: 900px;">
@@ -92,7 +91,7 @@
 		</tr>
 		<tr>
 			<th width="25%">시작일</th>
-			<td><input type="date" name="ps_sdate" class="input" id="currentDate" min="currentDate" required="required"></td>
+			<td><input type="date" name="ps_sdate" class="input" required="required"></td>
 		</tr>
 		<tr>
 			<th width="25%">종료일</th>
@@ -145,7 +144,6 @@
 </form>
 
 <script>
-  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
 </script>
 
 </body>
