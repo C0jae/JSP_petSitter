@@ -7,44 +7,140 @@
 <head>
 <meta charset="UTF-8">
 <title>펫시터 게시글 보기</title>
+<style type="text/css">
+	.g_container {
+		text-align: center;
+	}
+	
+	.ps_baord_main {
+		font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif;
+		font-size: 14px;
+		line-height: 21px;
+		
+		height: 3650px;
+		width: 1050px;
+		margin-left: 20%;
+		display: flex;
+		
+	}
+	
+	.box1 {
+		width: 580px;
+		min-height: auto;
+		min-width: auto;
+		display: block;
+	}
+	
+	.box2 {
+		font-size: 17px;
+		font-weight: bold;
+	}
+	
+	.box3 {
+		border: 1px solid #DFE3EA;
+		min-height: auto;
+		min-width: auto;
+		border-radius: 12px;
+		line-height: 40px;
+	}
+	
+	.ps_board_sub {
+		border: 1px solid #DFE3EA;
+		border-radius: 12px;
+	}
+	
+	.box4 {
+		margin-left: 20px;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		margin-right: 20px;
+	}
+	
+	.rsvBtn {
+		height: 60px;
+		width: 300px;
+		background-color: #aabb97;
+		border: none;
+		color: white;
+		text-align: center;
+		display: inline-block;
+		transition-duration: 0.4s;
+		cursor: pointer;
+		padding: 5px;
+		border-radius: 12px;
+		font-size: 15px;
+		font-weight: bold;
+		margin-left: 40px;
+	}
+	
+	.size1 {
+		width: 20%;
+	}
+	
+	.size2 {
+		width: 55%;
+		font-size: 10px;
+	}
+	
+	.size3 {
+	}
+</style>
 </head>
 <body>
 	<%@ include file="../top.jsp" %>
-	<br><br><br><br><hr>
+	<br><br><br><br>
 	<div class="g_container">
 			<div class="g_thumbnail">
-				<img alt="gallery" src="/img/${ps_board.g_fname}">
+				<img alt="gallery" src="/img/${ps_board.g_fname}" style="width: 700px; height: 300px;">
 			</div>
 	</div>
 	<hr>
-	<div class="ps_baord_main" style="display: flex; align-content: ">
-		<div>
-			<div>
-				<div><h3>${ps_board.m_addr} 펫시터 : ${petSitter.nick} 님</h3></div>
-				<div><h2>${ps_board.title}</h2></div>
-				<div>${ps_board.comment}</div>
+	<div class="ps_baord_main">
+		<div style="margin-right: 50px;">
+			<div class="box1">
+				<div style="font-size: 15px; line-height: 22px;">
+					<h3>${ps_board.m_addr} 펫시터 : ${petSitter.nick} 님</h3>
+				</div>
+				<div style="font-size: 25px; line-height: 37px;">
+					<h2>${ps_board.title}</h2>
+				</div>
+				<div style="font-size: 14px; line-height: 21px;">
+					${ps_board.comment}
+				</div>
 			</div>
-			<div><h4>${petSitter.nick} 펫시터님을 소개합니다.</h4></div> <br>
-			<div>${ps_board.content}</div> <br>
-			<div><h4>함께사는 반려동물</h4></div>
-			<c:forEach var="pet" items="${pet}">
-				<div>${pet.p_name}</div>
-				<div>
-					<c:if test="${pet.p_weight < 7}">
-						소형
-					</c:if>
-					<c:if test="${pet.p_weight >= 7 && pet.p_weight < 15}">
-						중형
-					</c:if>
-					<c:if test="${pet.p_weight > 15}">
-						대형
-					</c:if>
-					 / ${pet.p_gender} / ${pet.p_birth} 년생
-				</div><br>
-			</c:forEach>
-			<div><h4>자격증 및 교육수료</h4></div>
-			<div>${petSitter.license}</div> <br>
-			<div><h4>펫시터 후기
+			<div class="box2">
+				<h4>${petSitter.nick} 펫시터님을 소개합니다.</h4>
+			</div> <br>
+			<div style="font-size: 17px;">${ps_board.content}</div> <br>
+			<div class="box2">
+				<h4>함께사는 반려동물</h4>
+			</div>
+			<div style="display: flex;">
+				<c:forEach var="pet" items="${pet}">
+					<div class="box3" style="height: 100px; width: 250px; margin-right: 15px;">
+						<div style="font-size: 15px; text-align: left; font-weight: bold;">
+							&nbsp&nbsp&nbsp&nbsp${pet.p_name}
+						</div>
+						<div style="font-size: 13px; text-align: center;">
+							<c:if test="${pet.p_weight < 7}">
+								소형
+							</c:if>
+							<c:if test="${pet.p_weight >= 7 && pet.p_weight < 15}">
+								중형
+							</c:if>
+							<c:if test="${pet.p_weight >= 15}">
+								대형
+							</c:if>
+							 / ${pet.p_gender} / ${pet.p_birth} 년생
+						</div><br>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="box2"><h4>자격증 및 교육수료</h4></div>
+			<div class="box3" style="height: 50px; width: 250px; display: flex;">
+				&nbsp&nbsp&nbsp&nbsp${petSitter.license}
+			</div> <br>
+			<div class="box2"><h4>펫시터 후기
 				<c:if test="${rateCnt == null}"> 없음 </c:if> 
 				<c:if test="${rateCnt != null}"> ${rateCnt}개 </c:if>
 				<c:if test="${rateCnt != null}"> ${rate}점 </c:if>
@@ -53,93 +149,140 @@
 		</div>
 		<div>
 			<form method="post" name="reserve" action="./ps_reserve.do">
-				<input type="hidden" name="idx" value="${user.idx}">
+				<c:if test="${user == null}">
+					<input type="hidden" name="state" value="비로그인">
+				</c:if>
 				<input type="hidden" name="ps_idx" value="${ps_idx}">
 				<input type="hidden" name="s_date" value="${s_date}">
 				<input type="hidden" name="f_date" value="${f_date}">
 				<div class="ps_board_sub" style="margin: 80px">
-					<div><h4>기간</h4></div>
-					<div>${s_date} ~ ${f_date}</div>
-					<div><h4>맡기시는 반려동물</h4></div>
-					<div>
-						소형견(7kg 미만) : 
-						<c:if test="${p_size.contains('소형견')}">
-							<input type="text" onchange="money()" id="small" name="small" placeholder="마릿수입력(숫자만)"> <br>
-						</c:if>
-						<c:if test="${!p_size.contains('소형견')}">
-							<input type="text" onchange="money()" id="small" name="small" placeholder="선택불가" readonly> <br>
-						</c:if>
-						중형견(7kg 이상 15kg 미만) : 
-						<c:if test="${p_size.contains('중형견')}">
-							<input type="text" onchange="money()" id="middle"  name="middle" placeholder="마릿수입력(숫자만)"> <br>
-						</c:if>
-						<c:if test="${!p_size.contains('중형견')}">
-							<input type="text" onchange="money()" id="middle" name="middle" placeholder="선택불가" readonly> <br>
-						</c:if>
-						대형견(15kg 이상) : 
-						<c:if test="${p_size.contains('대형견')}">
-							<input type="text" onchange="money()" id="big" name="big" placeholder="마릿수입력(숫자만)">
-						</c:if>
-						<c:if test="${!p_size.contains('대형견')}">
-							<input type="text" onchange="money()" id="big" name="big" placeholder="선택불가" readonly> <br>
-						</c:if>
-						
+					<div class="box4">
+						<div class="box2"><h4>기간</h4></div>
+						<div class="box3" style="text-align: center; font-size: 15px; display: flex;">
+							<div style="width: 33%; text-align: center;">${s_date}</div>
+							<div style="width: 33%; text-align: center;">~</div>
+							<div style="width: 33%; text-align: center;">${f_date}</div>
+						</div>
+						<div class="box2"><h4>맡기시는 반려동물</h4></div>
+						<div class="box3">
+							<div style="display: flex; margin-left: 10px;">
+								<div style="width: 50%;">
+									소형견(7kg 미만) : 
+								</div>
+								<div>
+									<c:if test="${p_size.contains('소형견')}">
+										<input type="text" onchange="money()" id="small" name="small" placeholder="마릿수입력(숫자만)"> <br>
+									</c:if>
+									<c:if test="${!p_size.contains('소형견')}">
+										<input type="text" onchange="money()" id="small" name="small" placeholder="선택불가" readonly> <br>
+									</c:if>
+								</div>
+							</div>
+							<div style="display: flex; margin-left: 10px;">
+								<div style="width: 50%;">
+									중형견(7kg 이상 15kg 미만) : 
+								</div>
+								<div>
+									<c:if test="${p_size.contains('중형견')}">
+										<input type="text" onchange="money()" id="middle"  name="middle" placeholder="마릿수입력(숫자만)"> <br>
+									</c:if>
+									<c:if test="${!p_size.contains('중형견')}">
+										<input type="text" onchange="money()" id="middle" name="middle" placeholder="선택불가" readonly> <br>
+									</c:if>
+								</div>
+							</div>
+							<div style="display: flex; margin-left: 10px;">
+								<div style="width: 50%;">
+									대형견(15kg 이상) : 
+								</div>
+								<div>
+									<c:if test="${p_size.contains('대형견')}">
+										<input type="text" onchange="money()" id="big" name="big" placeholder="마릿수입력(숫자만)">
+									</c:if>
+									<c:if test="${!p_size.contains('대형견')}">
+										<input type="text" onchange="money()" id="big" name="big" placeholder="선택불가" readonly> <br>
+									</c:if>
+								</div>
+							</div>
+						</div><br>
+						<div style="text-align: center;">
+							<div id="result" style="font-size: 15px; font-weight: bold;"></div><hr>
+							<div id="result2" style="font-size: 13px;"></div>
+							<div id="result3" style="font-size: 13px;"></div>
+						</div><br>
+						<div><input type="button" value="예약요청" class="rsvBtn" onclick="check()"></div>
 					</div>
-					<div id="result"></div>
-					<div id="result2"></div>
-					<div id="result3"></div>
-					
-					<div><input type="button" value="예약요청" class="rsvBtn" onclick="check()"></div>
 				</div>
 			</form>
-			<br>
 			<div class="ps_board_sub" style="margin: 80px">
-				<div style="display: flex">
-					<div><h4>이용 요금(1박기준)</h4></div>
-				</div>
-				<div style="display: flex">
-					<div>소형견</div>
-					<div>7kg 미만</div>
-					<div>50,000원</div>
-				</div>
-				<div style="display: flex">
-					<div>중형견</div>
-					<div>7kg 이상 15kg 미만</div>
-					<div>65,000원</div>
-				</div>
-				<div style="display: flex">
-					<div>대형견</div>
-					<div>15kg 이상</div>
-					<div>80,000원</div>
+				<div class="box4">
+					<div style="display: flex">
+						<div class="box2" style="width: 230px"><h4>이용 요금</h4></div>
+						<div style="text-align: right; width: 150px"><h5>1박기준</h5></div>
+					</div>
+					<div class="box3">
+						<div style="display: flex; margin-left: 20px;">
+							<div class="size1">소형견</div>
+							<div class="size2">(7kg 미만)</div>
+							<div class="size3">50,000원</div>
+						</div>
+						<div style="display: flex; margin-left: 20px;">
+							<div class="size1">중형견</div>
+							<div class="size2">(7kg 이상 15kg 미만)</div>
+							<div class="size3">65,000원</div>
+						</div>
+						<div style="display: flex; margin-left: 20px;">
+							<div class="size1">대형견</div>
+							<div class="size2">(15kg 이상)</div>
+							<div class="size3">80,000원</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="ps_board_sub" style="margin: 80px">
-				<div style="display: flex">
-					<div><h4>${petSitter.nick} 님의 위치 :</h4></div>
-					<div><h4>${ps_board.m_addr}</h4></div>
+				<div class="box2" style="display: flex; margin-left: 20px; margin-right: 20px;">
+					<div style="width: 50%;"><h4>${petSitter.nick} 님의 위치 :</h4></div>
+					<div style="width:50%; text-align: center;"><h4>${ps_board.m_addr}</h4></div>
+					<input type="hidden" id="addr" value="${ps_board.m_addr}${petSitter.s_addr}">
 				</div>
 				<div>
-					<div id="map" style="width:500px;height:400px;"></div>
-					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c0773d8189ca233acd039192c7bcd1"></script>
+					<div id="map" style="width:100%;height:350px;"></div>
+
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c0773d8189ca233acd039192c7bcd1&libraries=services"></script>
 					<script>
-						var container = document.getElementById('map');
-						var options = {
-							center: new kakao.maps.LatLng(33.450701, 126.570667),
-							level: 3
-						};
-				
-						var map = new kakao.maps.Map(container, options);
-						
-						
-				/* 		var geocoder = new kakao.maps.services.Geocoder();
-		
-						var callback = function(result, status) {
-						    if (status === kakao.maps.services.Status.OK) {
-						        console.log(result);
-						    }
-						};
-		
-						geocoder.addressSearch('해남군 송지면', callback); */
+					var addr = document.getElementById("addr").value;
+					console.log(addr);
+					
+					var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+					
+					var mapContainer = document.getElementById('map'),
+					    mapOption = {
+					        center: new kakao.maps.LatLng(37.566826, 126.9786567),
+					        level: 3
+					    };  
+					
+					var map = new kakao.maps.Map(mapContainer, mapOption); 
+					
+					var ps = new kakao.maps.services.Places(); 
+					
+					ps.keywordSearch(addr, placesSearchCB); 
+					
+					function placesSearchCB (data, status, pagination) {
+					    if (status === kakao.maps.services.Status.OK) {
+					
+					        var bounds = new kakao.maps.LatLngBounds();
+					
+					        for (var i=0; i<data.length; i++) {
+					            displayMarker(data[i]);    
+					            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+					        }       
+					
+					        map.setBounds(bounds);
+					    } 
+					}
+					
+					function displayMarker(place) {
+					}
 					</script>
 				</div>
 			</div>

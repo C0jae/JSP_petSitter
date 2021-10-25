@@ -6,34 +6,97 @@
 <head>
 <meta charset="UTF-8">
 <title>펫시터 게시글 작성</title>
+<style type="text/css">
+	table{
+	justify-content: center; 
+	padding: 5px;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-bottom: 30%;
+	border-radius: 5px;
+	background-color: #dcedc8;
+	}
+	h1 {
+		text-align: center;
+		color: black;
+	}
+	
+	th{
+		text-align: center;
+		padding: 20px;
+		border-radius: 5px;
+		font-weight: bold;
+	}
+	td{
+		border-radius: 5px;
+		font-style: bold;
+	}
+	.btn {
+	width: 150px;
+	background-color: white; 
+	color: black; 
+	border: 2px solid #aabb97;
+	padding: 5px;
+	border-radius: 4px;
+	}
+
+	.btn:hover {
+		background-color: #aabb97;
+		color: white;
+		box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+	}
+	
+	.btn span {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		transition: 0.4s;
+	}
+	
+	.btn span:after {
+		content: '\00bb';
+		position: absolute;
+		opacity: 0;
+		top: 0;
+		right: -15px;
+		transition: 0.4s;
+	}
+	
+	.input {
+		width: 300px;
+		height: 40px;
+		font-size: 16px;
+		font-weight: 500px;
+	}
+</style>
 </head>
 <body>
 <%@ include file="../top.jsp" %>
 <br><br><br><br><hr>
-<h3>펫시터 게시글 작성</h3>
+<h1 style="color: #aabb97;">펫시터 게시글 작성</h1>
 <hr>
 <form method="post" action="./ps_board_save.do" enctype="multipart/form-data">
 	<input type="hidden" name="idx" value="${user.idx}">
-	<table>
+	<table style="height: 900px;">
 		<tr>
 			<th width="25%">제목</th>
-			<td><input type="text" name="title" width="100%" required="required"></td>
+			<td><input type="text" name="title" class="input" required="required"></td>
 		</tr>
 		<tr>
-			<th>닉네임</th>
-			<td><input type="text" name="nick" width="100%" required="required" readonly value="${petsitter.nick}"></td>
+			<th width="25%">닉네임</th>
+			<td><input type="text" name="nick" class="input" required="required" readonly value="${petsitter.nick}"></td>
 		</tr>
 		<tr>
 			<th>주소</th>
-			<td><input type="text" name="m_addr" width="100%" required="required" readonly value="${petsitter.m_addr}"></td>
+			<td><input type="text" name="m_addr" class="input" required="required" readonly value="${petsitter.m_addr}&nbsp${petsitter.s_addr}"></td>
 		</tr>
 		<tr>
 			<th width="25%">시작일</th>
-			<td><input type="date" name="ps_sdate" width="25%" required="required"></td>
+			<td><input type="date" name="ps_sdate" class="input" id="currentDate" min="currentDate" required="required"></td>
 		</tr>
 		<tr>
 			<th width="25%">종료일</th>
-			<td><input type="date" name="ps_fdate" width="25%" required="required"></td>
+			<td><input type="date" name="ps_fdate" class="input" required="required"></td>
 		</tr>
 		<tr>
 			<th>견종</th>
@@ -68,19 +131,22 @@
 		<tr>
 			<th>사진</th>
 			<td>
-				<input type="file" name="pic" accept="image/*" multiple>
+				<input type="file" name="pic" accept="image/*" multiple class="bn">
 			</td>
 		</tr>
-		<tr height="200">
+		<tr height="100">
 		 	<td colspan="2" align="center">
-			 	<input type="submit" value="저장" class="btn" >
-			 	<input type="reset"  value="다시쓰기" class="btn">
-			 	<input type="button" value="돌아가기" onclick="location.href='index.do'" class="btn">
+			 	<button type="submit" value="저장" class="btn" ><span>저장</span></button>
+			 	<button type="reset"  value="다시쓰기" class="btn"><span>다시쓰기</span></button>
+			 	<button type="button" value="돌아가기" onclick="location.href='index.do'" class="btn"><span>돌아가기</span></button>
 		 	</td>
 		</tr>
-		
 	</table>
 </form>
+
+<script>
+  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+</script>
 
 </body>
 </html>

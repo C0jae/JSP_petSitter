@@ -31,32 +31,68 @@ public class Select_PetSitter_Action implements Action {
 		String terms = Arrays.toString(request.getParameterValues("terms"));
 		terms = terms.substring(1, terms.length()-1);
 
+		request.setAttribute("s_date", wdate_start);
+		request.setAttribute("f_date", wdate_final);
+		
 		int pageNo;
 		if(request.getParameter("page")==null) pageNo=1;
 		else pageNo = Integer.parseInt(request.getParameter("page"));
 		int pageSize =3;
 		
 		AdopttimeDto adopt = new AdopttimeDto(m_addr,wdate_start,wdate_final,terms);
+		System.out.println(m_addr);
+//		if(m_addr.equals(null) && wdate_start.equals(null) && wdate_final.equals(null) && terms.equals("ul")){
+		if(m_addr == null && wdate_start == null && wdate_final == null && terms == "ul"){
+			PageDto pageDto = new PageDto(pageNo,cdao.getCount_All(),pageSize,m_addr,wdate_start,wdate_final,terms);
+			int StartNo = pageDto.getStartNo();
+			int startPage = pageDto.getStartPage();
+			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
+			
+			List<PetsitterDto> cmts = cdao.select_All(adopt_second);
 		
-		PageDto pageDto = new PageDto(pageNo,cdao.getCount(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
-		
-		int StartNo = pageDto.getStartNo();
-		int startPage = pageDto.getStartPage();
+			request.setAttribute("pageDto",pageDto);
+			request.setAttribute("cmtlist",cmts);
+			
+			forward.isRedirect=false;
+			forward.url="petsitter/home_View.jsp";
+			return forward; 
+			
+		}else if(wdate_start == null && wdate_final == null && terms == "ul"){
+			
+			
+			PageDto pageDto = new PageDto(pageNo,cdao.getCount_Adrr(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
+			
+			int StartNo = pageDto.getStartNo();
+			int startPage = pageDto.getStartPage();
+			
+			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
+			
+			List<PetsitterDto> cmts = cdao.select_addr(adopt_second);
 
-		AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
+			request.setAttribute("pageDto",pageDto);
+			request.setAttribute("cmtlist",cmts);
+			forward.isRedirect=false;
+			forward.url="petsitter/home_View.jsp";
+			return forward; 
 		
-		List<PetsitterDto> cmts = cdao.select(adopt_second);
+		}else{
+
+			PageDto pageDto = new PageDto(pageNo,cdao.getCount(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
 		
-		request.setAttribute("s_date", wdate_start);
-		request.setAttribute("f_date", wdate_final);
+			int StartNo = pageDto.getStartNo();
+			int startPage = pageDto.getStartPage();
+
+			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
 		
-		request.setAttribute("pageDto",pageDto);
-		request.setAttribute("cmtlist",cmts);
-//		pageContext.forward("home_View.jsp"); 
+			List<PetsitterDto> cmts = cdao.select(adopt_second);
 		
-		forward.isRedirect=false;
-		forward.url="petsitter/home_View.jsp";
-		return forward;
+			request.setAttribute("pageDto",pageDto);
+			request.setAttribute("cmtlist",cmts);
+			forward.isRedirect=false;
+			forward.url="petsitter/home_View.jsp";
+			return forward; 
+		
+		}
 	}
 
 }

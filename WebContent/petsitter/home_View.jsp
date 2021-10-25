@@ -105,10 +105,10 @@ ul.mylist , ol.mylist  {
 		<div class = "div1">
 			<div class = "box1">
 				<label>주소 :</label>
-				<input type="text" name="m_addr" placeholder="주소를 입력해주세요(ex)서울시)" required>&nbsp;&nbsp;
+				<input type="text" name="m_addr" placeholder="주소를 입력해주세요(ex)서울시)">&nbsp;&nbsp;
 				<label>날짜 :</label> 
-				<input type="date" name="wdate_start" value="s_date" required >&nbsp;~
-				<input type="date" name="wdate_final" value="f_date" required >
+				<input type="date" name="wdate_start" value="s_date">&nbsp;~
+				<input type="date" name="wdate_final" value="f_date">
 			</div>
 			<div class="box2">
 				<div>
@@ -124,8 +124,18 @@ ul.mylist , ol.mylist  {
 				 <input type="reset" value="다시쓰기" >
 			</div>
 		</div>
+		<div style="margin:auto;"> <!-- 추가 -->
+		 	<a class="button" href="${pageContext.request.contextPath }">홈으로 돌아가기 ${pageContext.request.contextPath } <!-- 추가 -->
+		 	</a>&nbsp;&nbsp;&nbsp;"${pageDto.m_addr}" 로 검색한 지원자 : ${pageDto.totalCount } 명입니다. <!-- 추가 -->
+		</div> <!-- 추가 -->
 		<div class="box4">
 			<h2>★펫시터 목록★</h2>
+			<div class="box6">
+				<c:if test="${pageDto.totalCount == null || pageDto.totalCount ==0}">
+						<img src = "/img/cat_select_empty.png" >
+						<h3>펫시터를 조회해주시거나 다시 조회해주세요. </h3>
+				</c:if>
+			</div>
 	  		 <c:forEach var="cmt" items="${cmtlist }">
 				<div class = "container">
 					<div class = "thumbnail">
@@ -159,9 +169,9 @@ ul.mylist , ol.mylist  {
       	<c:forEach var="i" begin="${pageDto.startPage}" end="${pageDto.endPage}">
          <a class="pagenum" href="?page=${i}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">${i }</a>
       	</c:forEach>
-      <c:if test="${pageDto.endPage !=pageDto.totalPage }">
-  	     <a class="pagenum" href="?page=${pageDto.endPage+1}">&gt;</a>
-  	     <a class="pagenum" href="?page=${pageDto.totalPage}">&gt;&gt;</a>
+      <c:if test="${pageDto.currentPage !=pageDto.endPage }">
+  	     <a class="pagenum" href="?page=${pageDto.currentPage+1}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">&gt;</a>
+  	     <a class="pagenum" href="?page=${pageDto.endPage}&m_addr=${pageDto.m_addr}&wdate_start=${pageDto.wdate_start}&wdate_final=${pageDto.wdate_final}&terms=${pageDto.terms}">&gt;&gt;</a>
    	  </c:if>
 	</div>
 	</c:if>

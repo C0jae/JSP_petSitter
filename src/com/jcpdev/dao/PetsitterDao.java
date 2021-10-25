@@ -45,4 +45,40 @@ public class PetsitterDao {
 		mapper.close();     
 		return cnt;
 	}
+	
+	//체크박스 , 주소, 조건 모두 입력안했을때 행의 갯수
+		public int getCount_All() {
+			SqlSession mapper = factory.openSession();
+			int cnt = mapper.selectOne("petsitter.getCount_All");
+			mapper.close();     
+			return cnt;
+		}
+			
+	//주소만 입력했을때 행의 개수
+	public int getCount_Adrr(AdopttimeDto addr) {
+		SqlSession mapper = factory.openSession();
+		int cnt = mapper.selectOne("petsitter.getCount_Adrr",addr);
+		mapper.close();     
+		return cnt;
+	}
+		
+	//체크박스 , 주소, 조건 모두 입력안했을때 모두출력하게하는 sql
+	public List<PetsitterDto> select_All(AdopttimeDto_second ado2) {
+		//SqlSession mapper = sqlFactory.openSession(true); //auto commit을 true
+		List<PetsitterDto> list = null;
+		SqlSession mapper = factory.openSession();
+		list = mapper.selectList("petsitter.PetSitter_Select_All",ado2); 
+		mapper.close();
+		return list;
+	}
+		
+	//체크박스 , 주소, 조건 모두 입력안했을때 모두출력하게하는 sql
+	public List<PetsitterDto> select_addr(AdopttimeDto_second ado3) {
+		//SqlSession mapper = sqlFactory.openSession(true); //auto commit을 true
+		List<PetsitterDto> list = null;
+		SqlSession mapper = factory.openSession();
+		list = mapper.selectList("petsitter.PetSitter_Select_Addr",ado3); 
+		mapper.close();
+		return list;
+	}
 }

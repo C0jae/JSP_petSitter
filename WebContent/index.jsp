@@ -8,7 +8,7 @@
 </head>
 <link rel="stylesheet" href="./css/flexbox2.css?v=3">
 <body>
-<%@ include file="top.jsp" %>
+	<%@ include file="top.jsp" %>
 <section>
 
 </section>
