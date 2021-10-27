@@ -49,7 +49,7 @@ public class PointChargeAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.isRedirect = false;
-		forward.url="detail.do";
+		forward.url="list.do";
 		return forward;
 	}
 

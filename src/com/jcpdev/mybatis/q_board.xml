@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- sql mapper   -->  
+<mapper namespace="q_board"> <!-- namespace : 일종의 식별역할의 변수 -->
+	
+	<select id="getList" resultType="dto.Q_board" parameterType="java.util.Map">
+		select * from q_board order by q_idx desc limit #{startNo},#{pageSize}
+	</select>
+	<select id="selectByIdx" resultType="dto.Q_board" parameterType="int">
+		select * from q_board where q_idx=#{q_idx}
+	</select>
+	<select id="getCount" resultType="int" >
+		select count(*) from q_board
+	</select>
+	
+	<insert id="insert" parameterType="dto.Q_board">
+		insert into q_board (nick,title,content,idx)
+		values (#{nick},#{title},#{content},#{idx})
+	</insert>
+	
+	<update id="update" parameterType="dto.Q_board">
+		update q_board set title =#{title}, content=#{content}
+		where q_idx=#{q_idx}
+	</update>
+	
+    <delete id="delete" parameterType="java.util.Map">
+		delete from q_board where q_idx=#{q_idx}
+	</delete>
+	
+	<select id="passwordCheck" resultType="dto.Q_board" parameterType="java.util.Map">
+		select qb.idx idx ,q_idx ,password from q_board qb
+		 inner join member m on m.idx = qb.idx where idx=#{idx} and password =#{password}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="q_cnt" parameterType="int">
+		update q_board set q_cnt = q_cnt +1 where q_idx=#{q_idx}
+	</update>
+	
+	
+</mapper>
+<!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
+     #{ } : 무조건 문자열(' '기호사용)로 중괄호 안의 값을 처리합니다. -->

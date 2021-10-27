@@ -35,6 +35,11 @@
     <mapper resource="mybatis/petprofile.xml"/>
     <mapper resource="mybatis/members.xml"/>
     <mapper resource="mybatis/petsitter.xml"/>
+    <mapper resource="mybatis/admin.xml"/>
+    <mapper resource="mybatis/comment.xml"/>
+    <mapper resource="mybatis/q_board.xml"/>
+    <mapper resource="mybatis/rboard.xml"/>
+    <mapper resource="mybatis/rbmember.xml"/>
     <!-- sql mapper 파일은 여러개 사용될 수 있다. -->
   </mappers>
 </configuration>

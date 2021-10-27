@@ -17,6 +17,7 @@ public class MemberDetailAction implements Action {
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
+		
 		MembersDao dao = MembersDao.getInstance();
 		
 		Member dto = dao.select(idx);

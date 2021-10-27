@@ -91,17 +91,16 @@ ul.mylist , ol.mylist  {
     height: 100%;
 }
 
-.thumbnail { padding:10px 20px 10px; border:none; width:400px; text-align:center; }
-.thumbnail img{ width:100%;height: 300px; object-fit:cover; margin-bottom: 10px; border-radius: 20%;}
+.thumbnail { padding:10px 20px 10px; border:none; width:400px; text-align:center; margin-left: 53px;}
+.thumbnail img{ width:100%;;height: 300px; object-fit:cover; margin-bottom: 10px; border-radius: 20%;}
 .container {width:30%;  padding:10px; border: none; float:left; }
-
 </style>
 </head>
 <body>
 <%@ include file="../top.jsp" %>
 <br><br><br><br>
 <div class ="Main_container">
-	<form action="./Select_PetSitter.do" name="frmReg" method="post" id="frm" onsubmit="return validCheck()" >
+	<form action="../Select_PetSitter.do" name="frmReg" method="post" id="frm" onsubmit="return validCheck()" >
 		<div class = "div1">
 			<div class = "box1">
 				<label>주소 :</label>
@@ -124,13 +123,13 @@ ul.mylist , ol.mylist  {
 				 <input type="reset" value="다시쓰기" >
 			</div>
 		</div>
-		<div style="margin:auto;"> <!-- 추가 -->
-		 	<a class="button" href="${pageContext.request.contextPath }">홈으로 돌아가기 ${pageContext.request.contextPath } <!-- 추가 -->
-		 	</a>&nbsp;&nbsp;&nbsp;"${pageDto.m_addr}" 로 검색한 지원자 : ${pageDto.totalCount } 명입니다. <!-- 추가 -->
-		</div> <!-- 추가 -->
+		<div style="margin:auto;">
+		 	<a class="button" href="${pageContext.request.contextPath }">홈으로 돌아가기 ${pageContext.request.contextPath }
+		 	</a>&nbsp;&nbsp;&nbsp;"${pageDto.m_addr}" 로 검색한 지원자 : ${pageDto.totalCount } 명입니다.
+		</div>
 		<div class="box4">
-			<h2>★펫시터 목록★</h2>
 			<div class="box6">
+				<h2>★펫시터 목록★</h2>
 				<c:if test="${pageDto.totalCount == null || pageDto.totalCount ==0}">
 						<img src = "/img/cat_select_empty.png" >
 						<h3>펫시터를 조회해주시거나 다시 조회해주세요. </h3>
@@ -145,7 +144,7 @@ ul.mylist , ol.mylist  {
 					</div>
 					<div class = "box5">
 						<ul class="mylist">
-							<li>idx값 :  ${cmt.m_addr}</li>
+							<%-- <li>idx값 :  ${cmt.m_addr}</li> --%>
 							<li>글제목 : ${cmt.title}</li>
 							<li>주소 : ${cmt.m_addr}</li>
 							<li>가능한 날짜 : ${cmt.ps_sdate} ~ ${cmt.ps_fdate }</li>

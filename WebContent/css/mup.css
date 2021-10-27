@@ -1,17 +1,126 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
 
-table {
-	width : 60%;
-	margin : auto;
-	
+:root{
+	--dark-green: #aabb97;
+    --light-green: #dcedc8;
+    --darker-green: #94af76;
 }
 
-div {
+
+@media screen and (max-width:768px) {
+   .row {
+       display:flex;
+        flex-direction: column;
+    }
+  
+}
+.name{
 	font-family: 'Gugi', cursive;
-	font-size:1.2em;
-	width: 1000px;
-	height: 400px;
-	color: black;
-	padding: 120px;
-	margin: 100px auto;
+	color : var(--darker-green);
+	font-size: 1.4em;
+	position: absolute;
+  	left: 300px;
+  	top: 200px;
+  	margin : auto;
+	padding : 100px;
+	padding-left : 150px;
+	padding-right : 150px;
+  	background-color : var(--light-green);
+  	border-radius : 5px;
+}
+.nick{
+	font-family: 'Gugi', cursive;
+	color :var(--darker-green);
+	font-size: 1.4em;
+	position: absolute;
+  	left: 800px;
+  	top: 200px;
+  	margin-left: -30px ;
+	padding : 100px;
+  	background-color : var(--light-green);
+  	border-radius : 5px;
+}
+.poin{
+	font-family: 'Gugi', cursive;
+	color :var(--darker-green);
+	font-size: 1.4em;
+	position: absolute;
+  	left: 800px;
+  	top: 500px;
+  	margin : auto;
+	padding : 100px;
+		margin-left: -30px ;
+		margin-top: -30px ;
+  	background-color : var(--light-green);
+  	border-radius : 5px;
+}
+.tel{
+	font-family: 'Gugi', cursive;
+	color :var(--darker-green);
+	font-size: 1.4em;
+	position: absolute;
+  	left: 300px;
+  	top: 500px;
+  	margin : auto;
+	padding : 100px;
+	margin-top: -30px ;
+  	background-color : var(--light-green);
+  	border-radius : 5px;
+}
+a.mup{
+	font-family: 'Gugi', cursive;
+	font-size : 1.3em;
+	position: absolute;
+	right : 300px;
+	top: 250px;	
+	background-color: #aabb97; 
+ 	border: none;
+	color: white;
+	   text-align: center;
+	   display: inline-block;
+	   margin: 4px 2px;
+	   transition-duration: 0.4s;
+	   cursor: pointer;
+	   padding: 50px;
+	   border-radius: 4px;
+	   text-decoration: none;
+}
+a.mup{
+   background-color: #aabb97;
+   color: black; 
+   border: 2px solid #aabb97;
+}
+a.mup:hover {
+   background-color: white;
+   color: black;
+   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+a.mupo{
+	font-family: 'Gugi', cursive;
+	font-size : 1.3em;
+	position: absolute;
+	right : 300px;
+	top:520px;	
+	text-decoration: none;
+	background-color: #aabb97; 
+   border: none;
+   color: white;
+   text-align: center;
+   display: inline-block;
+   margin: 4px 2px;
+   transition-duration: 0.4s;
+   cursor: pointer;
+   padding: 50px;
+   border-radius: 4px;
+}
+a.mupo{
+   background-color: #aabb97;
+   color: black; 
+   border: 2px solid #aabb97;
+}
+a.mupo:hover {
+ background-color: white; 
+   color: black;
+   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
 }

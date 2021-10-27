@@ -1,0 +1,233 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
+#headerbar{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	z-index: 1000px;
+	height: 100px;
+	overflow: hidden;
+	line-height: 100px;
+	background-color: white;
+	transition: opacity 0.2s;
+	opacity: 0;
+}
+
+
+a.home{
+	font-family: 'Gugi', cursive;
+	font-size: 1.7em;
+	text-align: center;
+	color: #aabb97;				/* #dcedc8 */
+	position: fixed;
+	left: 10%;
+	top: 2%;
+	text-decoration:none;
+	
+}
+a.menu {   
+    text-decoration: none;
+    font-family: 'Gugi', cursive;
+	font-size: 1.0 em;
+	text-align: center;
+	color: rgb(57, 60, 71);
+	
+}
+.navMenu {
+  position: fixed;
+  top: 5%;
+  left: 40%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+
+.navMenu a {
+  color: rgb(57, 60, 71);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.navMenu a:hover {
+  color: #dcedc8;
+  background-color: #aabb97;
+  border-radius: 4px;
+}
+.navMenu .dot {
+  width: 6px;
+  height: 6px;
+  position: relative;
+  top: 23px;
+  background: #94af76;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transform: translateX(30px);
+  transform: translateX(30px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.navMenu a:nth-child(1):hover ~ .dot {
+  -webkit-transform: translateX(-250px);
+  transform: translateX(-250px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(2):hover ~ .dot {
+  -webkit-transform: translateX(-150px);
+  transform: translateX(-150px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(3):hover ~ .dot {
+  -webkit-transform: translateX(-50px);
+  transform: translateX(-50px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(4):hover ~ .dot {
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}  
+
+
+@media screen and (max-width:768px) {
+    .container {
+        flex-direction: column;
+    }
+    .container > li {
+        text-align: center;
+    }
+}
+html {
+	position: relative;
+    min-height: 100%;
+    margin: 0;
+}
+body{
+	min-height:100%;
+	display: flex;
+	flex-direction: column;
+}
+body::before{
+        content: "";
+        background: url('../img/home_bg2.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.15;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        z-index:-10000;
+    }
+
+.login{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 110px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.register{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 20px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+
+#footer {
+ 	position: absolute;
+ 	text-align: center;
+    width: 100%;
+    background: #94af76;
+    color: #dcedc8;
+	left:0;
+ 	bottom:0;
+ }
+ 
+.main-msg{
+ 	font-family: 'Gugi', cursive;
+ 	font-size: 40px;
+    color: #004445;
+    font-weight: 500;
+    text-align: center;
+ 	position: absolute;
+ 	top: 50%;
+ 	left: 50%;
+ 	margin-left: -15rem;
+ 	margin-top: 25rem;
+ 	z-index: 1;
+ 	opacity:100%;
+ }
+ 
+ .mlist{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 110px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.logout{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 20px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.infor{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 350px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+.point{
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+	position: fixed;
+  	right: 200px;
+  	top: 10px;
+	color: rgb(57, 60, 71);
+}
+	
+.navMenu button {
+  color: rgb(57, 60, 71);
+  font-family: 'Gugi', cursive;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border: 0;
+  outline: 0;
+  background: white;
+  cursor: pointer;
+}
+
+.navMenu button:hover {
+  color: #dcedc8;
+  background-color: #aabb97;
+  border-radius: 4px;
+}

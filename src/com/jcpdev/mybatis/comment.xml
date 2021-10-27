@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- sql mapper   -->  
+<mapper namespace="comment">
+	<insert id="insert" parameterType="dto.Comment">
+		insert into q_comment(q_idx,qc_content,a_idx)
+		values (#{q_idx},#{qc_content},#{a_idx})
+	</insert>
+	
+	<select id="getComments" parameterType="int" resultType="dto.Comment">
+		select qc_idx ,qc.a_idx a_idx ,q_idx,qc_content ,id ,password ,nick 
+		from q_comment qc 
+				inner join member a on a.idx = qc.a_idx where q_idx=#{q_idx}
+	</select>
+	
+	<!-- 댓글추가/삭제에 모두 적용할 수 있습니다. -->
+	<update id="updateCountAll" parameterType="int">
+		update q_board set q_cnt=(
+		select count(*) from q_comment where qc_idx=#{qc_idx}) where q_idx=#{q_idx}
+	</update>	<!-- 메인글의 idx 가 파라미터입니다. -->
+	
+	<select id="qc_cnt" parameterType="int" resultType="String">
+		select count(*) from q_comment where q_idx = #{q_idx}
+	</select>
+	
+	<!-- 이 sql 은 freeboard.xml 로 이동해도 됩니다.but 댓글테이블이 있어야 동작하니 여기에 놓고 하겠습니다. -->
+	<!-- 위에 것 사용하면 필요없지만 그냥 참고하세요. -->
+	<update id="updateCommentCnt" parameterType="int">
+		update q_board set qc_cnt=qc_cnt+1 
+		where qc_idx=#{qc_idx}
+	</update> 
+	
+	<delete id="delete" parameterType="int">
+		delete from q_comment where qc_idx = #{qc_idx}
+	</delete>
+</mapper>

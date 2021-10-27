@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- sql mapper   -->  
+<mapper namespace="rboard"> <!-- namespace : 일종의 식별역할의 변수 -->
+	
+	<select id="getList" resultType="dto.Rboard" parameterType="java.util.Map">
+		select * from r_board order by r_idx desc limit #{startNo},#{pageSize}
+	</select>
+	
+	<select id="selectByIdx" resultType="dto.Rboard" parameterType="int">
+		select * from r_board where r_idx=#{r_idx}
+	</select>
+	
+	<select id="getCount" resultType="int" >
+		select count(*) from r_board
+	</select>
+	
+	<insert id="insert" parameterType="dto.Rboard">
+		insert into r_board (idx,title,content, r_cnt, nick,ps_nick ,rate)
+		values (#{idx},#{title},#{content},#{r_cnt},#{nick},#{ps_nick},#{rate})
+	</insert>
+	
+	<update id="update" parameterType="dto.Rboard">
+		update r_board set title =#{title}, content=#{content} , rate=#{rate}
+		where r_idx=#{r_idx}
+	</update>
+	
+	<delete id="delete" parameterType="dto.Rboard"><!-- 글 비밀번호 확인하고 삭제 -->
+		delete from r_board where r_idx=#{r_idx}
+	</delete>
+	
+	<select id="passwordCheck" resultType="dto.Rboard" parameterType="java.util.Map">
+		select * from r_board where idx=#{idx} and password =#{password}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="r_cnt" parameterType="int">
+		update r_board set r_cnt = r_cnt +1 where r_idx=#{r_idx}
+	</update>
+	
+	
+<!-- 	<select id="loginCheck" parameterType="java.util.Map" resultType="SessionDto">
+		select * from member where id = #{id} 
+		and password=#{password}
+	</select> -->
+</mapper>
+<!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
+     #{ } : 무조건 문자열(' '기호사용)로 중괄호 안의 값을 처리합니다. -->

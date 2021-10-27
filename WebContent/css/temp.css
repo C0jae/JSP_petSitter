@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+table {
+	width : 70%;
+	margin: auto;
+	
+}
+
+th {
+		text-align: center;
+		background-color: #4080bf;
+		font-size:90%;
+		color: white;
+		width: 35%;
+		border-radius : 3px;
+}
+
+
+.btn {
+	width: 70px;
+	cursor : pointer;
+}

@@ -52,18 +52,18 @@ public class Ps_boardDao {
 		return dto;
 	}
 	
-	public R_board rate(String ps_nick) {	// 펫시터 평점 불러오기
+	public double rate(String ps_nick) {	// 펫시터 평점 불러오기
 		SqlSession mapper = factory.openSession();
-		R_board dto = mapper.selectOne("ps_board.rate", ps_nick);
+		double rate = mapper.selectOne("ps_board.rate", ps_nick);
 		mapper.close();
-		return dto;
+		return rate;
 	}
 	
-	public R_board rateCnt(String ps_nick) {	// 펫시터 후기 갯수 불러오기
+	public String rateCnt(String ps_nick) {	// 펫시터 후기 갯수 불러오기
 		SqlSession mapper = factory.openSession();
-		R_board dto = mapper.selectOne("ps_board.rateCnt", ps_nick);
+		String rateCnt = mapper.selectOne("ps_board.rateCnt", ps_nick);
 		mapper.close();
-		return dto;
+		return rateCnt;
 	}
 	
 	public void psr_insert(Reservation dto) {		// 예약테블에 insert
@@ -94,6 +94,35 @@ public class Ps_boardDao {
 		mapper.close();
 	}
 	
+	public List<R_board> r_getList(String ps_nick) {	// 후기 게시글 불러오기
+		List<R_board> list = null;
+		SqlSession mapper = factory.openSession();
+		list = mapper.selectList("ps_board.r_getList", ps_nick);
+		mapper.close();
+		return list;
+	}
+	
+	public void psb_update(Ps_board dto) {	// 펫시터 게시글 수정에 따른 update
+		SqlSession mapper = factory.openSession();
+		mapper.update("ps_board.psb_update", dto);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public void psb_delete(int psb_idx) {	// 펫시터 게시글 삭제
+		SqlSession mapper = factory.openSession();
+		mapper.update("ps_board.psb_delete", psb_idx);
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public int checkIncome() {
+		SqlSession mapper = factory.openSession();
+		String income = mapper.selectOne("ps_board.checkIncome");
+		int income2 = Integer.parseInt(income);
+		mapper.close();
+		return income2;
+	}
 	
 	
 	

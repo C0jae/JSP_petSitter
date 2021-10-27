@@ -38,4 +38,6 @@ public class PageDto {
 		endPage = startPage+9;
 		endPage = endPage > totalPage ? totalPage:endPage;
 	}
+	
+	
 }

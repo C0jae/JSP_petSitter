@@ -81,4 +81,41 @@ public class PetsitterDao {
 		mapper.close();
 		return list;
 	}
+	
+	//주소 날짜란만 입력하고 조회했을때 행의 총 갯수sql 
+	public int getCount_Add_Date(AdopttimeDto add_date) {
+		SqlSession mapper = factory.openSession();
+		int cnt = mapper.selectOne("petsitter.getCount_Add_Date",add_date);
+		mapper.close();     
+		return cnt;
+	}
+			
+	//주소 날짜란만 입력하고 조회했을때 행 조회 sql 
+	public List<PetsitterDto> select_addr_date(AdopttimeDto_second addr_date) {
+		//SqlSession mapper = sqlFactory.openSession(true); //auto commit을 true
+		List<PetsitterDto> list = null;
+		SqlSession mapper = factory.openSession();
+		list = mapper.selectList("petsitter.PetSitter_Select_Addr_date",addr_date); 
+		mapper.close();
+		return list;
+	}	
+	
+	//조건만 체크 하고 조회했을때 행의 갯수 sql
+	public int getCount_terms(AdopttimeDto terms) {
+		SqlSession mapper = factory.openSession();
+		int cnt = mapper.selectOne("petsitter.getCount_terms", terms);
+		mapper.close();     
+		return cnt;
+	}	
+		
+	//조건만 체크하고 조회했을때 행의갯수
+	public List<PetsitterDto> select_terms(AdopttimeDto_second select_terms) {
+		//SqlSession mapper = sqlFactory.openSession(true); //auto commit을 true
+		List<PetsitterDto> list = null;
+		SqlSession mapper = factory.openSession();
+		list = mapper.selectList("petsitter.PetSitter_Select_terms",select_terms); 
+		mapper.close();
+		return list;
+	}
+	
 }

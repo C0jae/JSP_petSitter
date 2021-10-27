@@ -39,9 +39,9 @@ public class MembersDao {
 		mapper.close();
 		return dto.getIdx();
 	}
-	public int delete(int idx) {
+	public int delete(Map<String,Object> map) {
 		SqlSession mapper =factory.openSession();
-		int n = mapper.delete("members.Members_delete", idx);
+		int n = mapper.delete("Members_delete", map);
 		mapper.commit();
 		mapper.close();
 		return n;
@@ -65,6 +65,18 @@ public class MembersDao {
 		SqlSession mapper = factory.openSession();
 		dto = mapper.selectOne("members.loginCheck",map);
 		return dto;
+	}
+	public int IdCheck(String id){
+		SqlSession mapper =factory.openSession();
+		int count = mapper.selectOne("members.IdCheck", id);
+		mapper.close();
+		return count;
+	}
+	public int NickCheck(String nick){
+		SqlSession mapper =factory.openSession();
+		int cnt = mapper.selectOne("members.NickCheck", nick);
+		mapper.close();
+		return cnt;
 	}
 
 }

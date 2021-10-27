@@ -21,7 +21,7 @@ function noEvent() {
 }
 document.onkeydown = noEvent;
 </script>
-<link rel="stylesheet" href="css/mup.css?v=3">
+<link rel="stylesheet" href="../css/mup.css?v=3">
 </head>
 <body>
 <%@ include file="../top.jsp" %>

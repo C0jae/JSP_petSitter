@@ -2,59 +2,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Day4[]- 고객 수정</title>
-<style  type="text/css">
-div {
-	font-family: 'Gugi', cursive;
-	width: 200px;
-	height: 200px;
-	color: #aabb97;
-	padding: 120px;
-	margin: 100px auto;
-}
-input{ 	padding: 5px;
-		margin: 20px auto; 
-}
-input[type=submit], input[type=button], input[type=reset] {
-	background:	#aabb99;
-	color: white;
-	left : 30px;
-}
-</style>
-<script>
-	function validCheck() {
-		
-	}
-	
-	function deletOk() {
-		const yn = confirm('[주의]등록된 고객에서 삭제하시겠습니까 ?');
-		if(yn){
-			alert(`고객 idx ${dto.idx} 를 삭제합니다.)`)
-			location.href=`delete.do?idx=${dto.idx}`;
-		}else{
-			alert('고객 삭제를 취소했습니다.');
-		}
-		
-	}
-</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>고객 수정</title>
+<link rel= "stylesheet" href="./css/mupdate.css?v=3">
 </head>
 <body>
-<c:if test="${alert!=null }">
-	<script type="text/javascript">
-		alert('고객 정보가 수정되었습니다.!');
-	</script>
-</c:if>
-	<div style="width: 30%; margin: auto;">
-		<h3>회원 수정</h3>  <!-- 이메일 , 지역 -->
-		<form action="modify.do?idx=${dto.idx }" name="frmReg" method="post"
-			onsubmit="return validCheck()">
+<%@ include file="../top.jsp" %>
+
+<section>
+	<div >
+		<form action="modify.do?idx=${dto.idx }" name="frmReg" method="post">
 			<input type="hidden" name="idx" value="${dto.idx}" >  
 			<!--브라우저에 출력은 안되고 파라미터로 필요한값은 type을 hidden으로 한다. -->
-			<table style="width: 100%">
+			<table >
+				<tr>
+				<td><label>회원 수정</label><td>
+				</tr>  <!-- 이메일 , 지역 -->
 				<tr>
 					<td><label>이름</label></td>
 
@@ -80,11 +48,53 @@ input[type=submit], input[type=button], input[type=reset] {
 				<tr>
 					<td colspan="2" style="text-align: center">
 					<input type="submit" value="수정하기"> 
-					<input type="button" value="탈퇴하기" onclick="deletOk()">
+					<input type="button" value="탈퇴하기" onclick="deleteOk()">
 					<input type="button" value="고객목록" onclick="location.href='list.do'"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	<div id="myModal" class="modal">
+			<span class="close">&times;</span><br>
+			<div style="padding: 0px 20px; color:red;" >
+				<b>비밀번호</b><br>
+				<br>
+				<form action="delete.do" method="post" name="frmPassword"
+						onsubmit="return deleteSet()">
+					<input type="hidden" name="idx" value="${dto.idx }"> <!--삭제할 글번호-->
+					<input type="password" name="password" size="10">
+					<input type="submit" value="확인" style="padding: 5px 20px;">
+					<br>
+					<span style="color:red;font-size:0.8em;" id="err"></span>
+				</form>
+			</div>
+	</div>
+	<script>
+	var modal = document.getElementById('myModal');
+	var span = document.getElementsByClassName("close")[0];
+
+	span.onclick = function() {   //span 요소의 onclick 속성값에 해당하는 함수를 설정합니다.
+		modal.style.display = "none";   //modal 화면에 안보이기   닫기 기능 구현
+	}
+
+	function deleteSet() {
+		const yn = confirm('[주의]등록된 고객에서 삭제하시겠습니까 ?');
+		if(yn){
+			//비밀번호 입력되었는지확인.
+			if(document.frmPassword.password.value==""){
+				document.getElementById('err').innerHTML = "비밀번호를 입력하세요.";
+				return false;
+			} else {  	return true; 	}
+			
+		}else {
+			modal.style.display = "none"; 
+			return false;
+		}
+	}
+	function deleteOk(){
+		document.getElementById('myModal').style.display='block';		
+	}
+</script>
+</section>
 </body>
 </html>

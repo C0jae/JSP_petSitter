@@ -12,26 +12,48 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.action.Action;
 import controller.action.ActionForward;
+import controller.action.CommentAction;
+import controller.action.DeleteAction;
+import controller.action.DetailAction;
 import controller.action.IndexAction;
+import controller.action.InsertAction;
+import controller.action.ListAction;
 import controller.action.LoginAction;
 import controller.action.LogoutAction;
 import controller.action.MemberDeleteAction;
 import controller.action.MemberDetailAction;
+import controller.action.MemberIdCheckAction;
 import controller.action.MemberInsertAction;
 import controller.action.MemberListAction;
 import controller.action.MemberModifyAction;
+import controller.action.MemberNickCheckAction;
 import controller.action.MemberUpdateAction;
+import controller.action.ModifyAction;
 import controller.action.Pay_checkAction;
 import controller.action.Pet_insertAction;
 import controller.action.Pet_multiWriteAction;
 import controller.action.Pet_writeAction;
 import controller.action.PointAction;
 import controller.action.PointChargeAction;
+import controller.action.Ps_board_deleteAction;
 import controller.action.Ps_board_insertAction;
 import controller.action.Ps_board_readAction;
+import controller.action.Ps_board_saveAction;
+import controller.action.Ps_board_updateAction;
 import controller.action.Ps_board_writeAction;
 import controller.action.Ps_reserveAction;
+import controller.action.Ps_selectAction;
+import controller.action.Qna_writeAction;
+import controller.action.RbDeleteAction;
+import controller.action.RbDetailAction;
+import controller.action.RbInsertAction;
+import controller.action.RbListAction;
+import controller.action.RbModifyAction;
+import controller.action.RbPopupAction;
+import controller.action.RbUpdateAction;
+import controller.action.SearchPsAction;
 import controller.action.Select_PetSitter_Action;
+import controller.action.UpdateAction;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -92,10 +114,21 @@ public class FrontController extends HttpServlet {
 			Action action = new Pet_multiWriteAction();
 			forward = action.execute(request, response);
 		}
+		else if(spath.equals("/ps_boardUpdate.do")) {	// 펫시터 게시글 수정
+			Action action = new Ps_board_updateAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/psb_updateSave.do")) {	// 펫시터 수정 게시글 update
+			Action action = new Ps_board_saveAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/ps_boardDelete.do")) {	// 펫시터 수정 게시글 삭제
+			Action action = new Ps_board_deleteAction();
+			forward = action.execute(request, response);
+		}
 		else if(spath.equals("/list.do")) {
 			Action action = new MemberListAction();
 			forward = action.execute(request, response);
-			forward.setUrl("member/memberup.jsp");
 		}
 		else if(spath.equals("/login.do")) {
 			path = "login.jsp";
@@ -152,22 +185,122 @@ public class FrontController extends HttpServlet {
 			Action action = new Select_PetSitter_Action();
 			forward = action.execute(request, response); 
 		}
-		
-		
-		System.out.println(spath);
-		System.out.println(path);
-		
-		
-		if(!forward.isRedirect()) {
-			RequestDispatcher rd = request.getRequestDispatcher(forward.getUrl());
-			rd.forward(request, response);
+		else if(spath.equals("/psSelect.do")) {
+			Action action = new Ps_selectAction();
+			forward = action.execute(request, response); 
 		}
-		else {
-			response.sendRedirect(forward.getUrl());
+		else if(spath.equals("/CheckId.do")) {
+			path ="member/IdCheck.jsp";
+			forward = new ActionForward(false,path); 
+		}
+		else if(spath.equals("/CheckNick.do")) {
+			path ="member/NickCheck.jsp";
+			forward = new ActionForward(false,path); 
+		}
+		else if(spath.equals("/success.do")) {
+			path ="member/success.jsp";
+			forward = new ActionForward(false,path); 
+		}
+		else if(spath.equals("/success2.do")) {
+			path ="member/success2.jsp";
+			forward = new ActionForward(false,path); 
+		}
+		else if(spath.equals("/IdCheck.do")) {
+			Action action = new MemberIdCheckAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/NickCheck.do")) {
+			Action action = new MemberNickCheckAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/qnaList.do")) {
+			Action action = new ListAction();
+			forward = action.execute(request, response);     
+			forward.setUrl("community/list.jsp");
+		}
+		else if(spath.equals("/qnaDetail.do")) {
+			Action action = new DetailAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/qnaSave.do")) {
+			Action action = new InsertAction();
+			forward = action.execute(request, response);
+			url = "qnaList.do";
+			forward.setUrl(url);
+		}
+		else if(spath.equals("/qnaUpdate.do")) {
+			Action action = new UpdateAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/qnaModify.do")) {
+			Action action = new ModifyAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/qnaDelete.do")) {
+			Action action = new DeleteAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/comment.do")) {
+			Action action = new CommentAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/qnaWrite.do")) {
+			Action action = new Qna_writeAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/rblist.do")) {
+			Action action = new RbListAction();
+			forward = action.execute(request, response);
+			forward.setUrl("community/rblist.jsp");
+		}
+		else if(spath.equals("/rbdetail.do")) {
+			Action action = new RbDetailAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/rbinsert.do")) {
+			path ="community/rbinsert.jsp";
+			forward = new ActionForward(false,path);
+		}
+		else if(spath.equals("/rbpopup.do")) {
+			Action action = new RbPopupAction();
+			forward = action.execute(request, response);
+			forward.setUrl("community/rbpopup.jsp");
+		}
+		else if(spath.equals("/searchps.do")) {
+			Action action = new SearchPsAction();
+			forward = action.execute(request, response);
+			forward.setUrl("community/rbsearch_view.jsp");
+		}
+		else if(spath.equals("/rbupdate.do")) {
+			Action action = new RbUpdateAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/rbdelete.do")) {
+			Action action = new RbDeleteAction();
+			forward = action.execute(request, response);
+			url = "rblist.do";
+			forward.setUrl(url);
+		}
+		else if(spath.equals("/rbmodify.do")) {
+			Action action = new RbModifyAction();
+			forward = action.execute(request, response);
+		}
+		else if(spath.equals("/rbsave.do")) {
+			Action action = new RbInsertAction();
+			forward = action.execute(request, response);
+			url = "rblist.do";
+			forward.setUrl(url);
 		}
 		
-		
-		
+		if(forward != null) {
+			if(!forward.isRedirect()) {
+				RequestDispatcher rd = request.getRequestDispatcher(forward.getUrl());
+				rd.forward(request, response);
+			}
+			else {
+				response.sendRedirect(forward.getUrl());
+			}
+		}
 		
 	}
 

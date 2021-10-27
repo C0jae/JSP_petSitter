@@ -86,8 +86,10 @@
 			<td><input type="text" name="nick" class="input" required="required" readonly value="${petsitter.nick}"></td>
 		</tr>
 		<tr>
-			<th>주소</th>
-			<td><input type="text" name="m_addr" class="input" required="required" readonly value="${petsitter.m_addr}&nbsp${petsitter.s_addr}"></td>
+			<th>기본주소</th>
+			<td>
+				<input type="text" name="m_addr" class="input" required="required" value="${petsitter.m_addr}">
+			</td>
 		</tr>
 		<tr>
 			<th width="25%">시작일</th>

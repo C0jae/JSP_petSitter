@@ -40,12 +40,11 @@ public class Select_PetSitter_Action implements Action {
 		int pageSize =3;
 		
 		AdopttimeDto adopt = new AdopttimeDto(m_addr,wdate_start,wdate_final,terms);
-		System.out.println(m_addr);
-//		if(m_addr.equals(null) && wdate_start.equals(null) && wdate_final.equals(null) && terms.equals("ul")){
-		if(m_addr == null && wdate_start == null && wdate_final == null && terms == "ul"){
+
+		if(m_addr.equals("") && wdate_start.equals("") && wdate_final.equals("") && terms.equals("ul")){
+//		if(m_addr == null && wdate_start == null && wdate_final == null && terms == "ul"){
 			PageDto pageDto = new PageDto(pageNo,cdao.getCount_All(),pageSize,m_addr,wdate_start,wdate_final,terms);
 			int StartNo = pageDto.getStartNo();
-			int startPage = pageDto.getStartPage();
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
 			
 			List<PetsitterDto> cmts = cdao.select_All(adopt_second);
@@ -57,13 +56,13 @@ public class Select_PetSitter_Action implements Action {
 			forward.url="petsitter/home_View.jsp";
 			return forward; 
 			
-		}else if(wdate_start == null && wdate_final == null && terms == "ul"){
+		//}else if(wdate_start == null && wdate_final == null && terms == "ul"){
+		}else if(wdate_start.equals("") && wdate_final.equals("") && terms.equals("ul")){
 			
 			
 			PageDto pageDto = new PageDto(pageNo,cdao.getCount_Adrr(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
 			
 			int StartNo = pageDto.getStartNo();
-			int startPage = pageDto.getStartPage();
 			
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
 			
@@ -75,12 +74,42 @@ public class Select_PetSitter_Action implements Action {
 			forward.url="petsitter/home_View.jsp";
 			return forward; 
 		
+		}else if(terms.equals("ul")){ //주소, 날짜 클릭하고 조회하기
+			
+			PageDto pageDto = new PageDto(pageNo,cdao.getCount_Add_Date(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
+			
+			int StartNo = pageDto.getStartNo();
+			
+			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
+			
+			List<PetsitterDto> cmts = cdao.select_addr_date(adopt_second);
+			request.setAttribute("pageDto",pageDto);
+			request.setAttribute("cmtlist",cmts);
+			forward.isRedirect=false;
+			forward.url="petsitter/home_View.jsp";
+			return forward; 
+		
+		}else if(m_addr.equals("") && wdate_start.equals("") && wdate_final.equals("") && terms.equals("ul")==false){ //체크박스 체크만 하고 조회
+			
+			PageDto pageDto = new PageDto(pageNo,cdao.getCount_terms(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
+		
+			int StartNo = pageDto.getStartNo();
+			
+			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
+			
+			List<PetsitterDto> cmts = cdao.select_terms(adopt_second);
+			
+			request.setAttribute("pageDto",pageDto);
+			request.setAttribute("cmtlist",cmts);
+			
+			forward.isRedirect=false;
+			forward.url="petsitter/home_View.jsp";
+			return forward; 
 		}else{
 
 			PageDto pageDto = new PageDto(pageNo,cdao.getCount(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
 		
 			int StartNo = pageDto.getStartNo();
-			int startPage = pageDto.getStartPage();
 
 			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
 		

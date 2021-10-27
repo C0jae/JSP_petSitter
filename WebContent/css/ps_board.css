@@ -1,0 +1,106 @@
+.g_container {
+	text-align: center;
+}
+
+.ps_baord_main {
+	font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif;
+	font-size: 14px;
+	line-height: 21px;
+	
+	height: 3650px;
+	width: 1050px;
+	margin-left: 20%;
+	display: flex;
+	
+}
+
+.box1 {
+	width: 580px;
+	min-height: auto;
+	min-width: auto;
+	display: block;
+}
+
+.box2 {
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.box3 {
+	border: 1px solid #DFE3EA;
+	min-height: auto;
+	min-width: auto;
+	border-radius: 12px;
+	line-height: 40px;
+}
+
+.ps_board_sub {
+	border: 1px solid #DFE3EA;
+	border-radius: 12px;
+}
+
+.box4 {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+
+.reviewBox {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.rsvBtn {
+	height: 60px;
+	width: 300px;
+	background-color: #aabb97;
+	border: none;
+	color: white;
+	text-align: center;
+	display: inline-block;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 40px;
+}
+
+.btn {
+	height: 35px;
+	width: 100px;
+	background-color: #aabb97;
+	border: none;
+	color: white;
+	line-height: 35px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+.size1 {
+	width: 20%;
+}
+
+.size2 {
+	width: 55%;
+	font-size: 10px;
+}
+
+.dateBox {
+	width: 70%;
+	height: 75%;
+	border: none;
+}
+
+.star {
+	-webkit-text-fill-color: gold;
+	font-size: 1.8em;
+}

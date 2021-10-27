@@ -30,11 +30,11 @@
 		select * from member where idx = #{idx}
 	</select>
 	
-	<select id="rate" parameterType="String" resultType="dto.R_board">	<!-- 펫시터 평점 불러오기 -->
+	<select id="rate" parameterType="String" resultType="double">	<!-- 펫시터 평점 불러오기 -->
 		select avg(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick;
 	</select>
 	
-	<select id="rateCnt" parameterType="String" resultType="dto.R_board">	<!-- 펫시터 후기 게시판 갯수 불러오기 -->
+	<select id="rateCnt" parameterType="String" resultType="String">	<!-- 펫시터 후기 게시판 갯수 불러오기 -->
 		select count(rate) from r_board where ps_nick = #{ps_nick} group by ps_nick;
 	</select>
 	
@@ -55,7 +55,23 @@
 		insert into income value(#{idx}, now(), #{vat});
 	</insert>
 	
+	<select id="r_getList" parameterType="String" resultType="dto.R_board">	<!-- 후기게시판 불러오기 -->
+		select * from r_board where ps_nick = #{ps_nick}
+	</select>
 	
+	<update id="psb_update" parameterType="dto.Ps_board">	<!-- 펫시터 게시판 수정 -->
+		update ps_board set title = #{title}, content = #{content}, ps_sdate = #{ps_sdate}, 
+		ps_fdate = #{ps_fdate}, p_size = #{p_size}, comment = #{comment}, terms = #{terms}, 
+		g_fname = #{g_fname}, m_addr = #{m_addr} where psb_idx = #{psb_idx}
+	</update>
+	
+	<delete id="psb_delete" parameterType="int">
+		delete from ps_board where psb_idx = #{psb_idx}
+	</delete>
+	
+	<select id="checkIncome" resultType="String">
+		select sum(income) from income
+	</select>
 </mapper>
 
 

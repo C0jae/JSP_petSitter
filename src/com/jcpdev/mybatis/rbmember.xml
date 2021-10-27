@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="rbmember"> 
+	
+
+	<select id="getList" resultType="dto.RbMember" parameterType="java.util.Map">
+		select * from member where p_auth=true order by idx desc limit #{startNo},#{pageSize}
+	</select>
+	<select id="getCount" resultType="int" >
+		select count(*) from member where p_auth=true
+	</select>
+	<select id="loginCheck" parameterType="java.util.Map" resultType="dto.SessionDto">
+		select * from member where id = #{id} 
+		and password=#{password}
+	</select>
+	<select id="adminCheck" parameterType="java.util.Map" resultType="dto.SessionDto">
+		select * from admin where a_id = #{id} 
+		and a_password=#{password}
+	</select>
+	<select id="resultCount" resultType="int" parameterType="String">
+		select count(*) from member where p_auth=지원 and nick like CONCAT('%',#{nick},'%')
+	</select>
+	<select id="psbyNick" resultType="dto.RbMember" parameterType="String">
+		select * from member where p_auth='지원' and nick like CONCAT('%',#{nick},'%')
+	</select>
+	
+</mapper>
+<!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
+     #{ } : 무조건 문자열(' '기호사용)로 중괄호 안의 값을 처리합니다. -->

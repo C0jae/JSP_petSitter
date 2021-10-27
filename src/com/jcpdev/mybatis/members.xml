@@ -16,17 +16,30 @@
 		insert into member (name,id,password,nick,gender,birth,tel,m_addr,s_addr,point,p_auth,license,work_date,home)
 		values (#{name},#{id},#{password},#{nick},#{gender},#{birth},#{tel},#{m_addr},#{s_addr},#{point},#{p_auth},#{license},#{work_date},#{home})
 	</insert>
+	
 	<update id="Members_update" parameterType="dto.Member">
 		update member set password=#{password},tel=#{tel},m_addr=#{m_addr},s_addr=#{s_addr} 
 		where idx=#{idx}
 	</update>
-	<delete id="Members_delete" parameterType="int">
-	 	delete from member where idx=#{idx}
+	
+	<delete id="Members_delete" parameterType="java.util.Map">
+	 	delete from member where idx=#{idx} and password =#{password}
 	</delete>
+	
 	<update id="update_point" parameterType="dto.Member">
 		update member set point= point+#{point} where idx=#{idx}
 	</update>
+	
 	<select id="loginCheck" parameterType="java.util.Map" resultType="dto.SessionDto">
 		select * from member where id=#{id} and password=#{password}
 	</select>
+	
+	<select id="IdCheck" parameterType="String" resultType="int">
+		select count(*) from member where id=#{id}
+	</select>
+	
+	<select id="NickCheck" parameterType="String" resultType="int">
+		select count(*) from member where nick=#{nick}
+	</select>
+	
 </mapper>

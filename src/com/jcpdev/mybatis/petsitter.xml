@@ -32,6 +32,23 @@
 	<select id ="PetSitter_Select_Addr" parameterType="dto.AdopttimeDto_second" resultType="dto.PetsitterDto">
 		select * from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') order by idx desc limit #{StartNo},#{pageSize}
 	</select>
+	
+		<select id ="getCount_Add_Date" resultType="int" parameterType="dto.AdopttimeDto">
+		select count(*) from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') and (#{wdate_start} >= ps_sdate and ps_fdate>= #{wdate_final})
+	</select>
+	
+	<select id ="PetSitter_Select_Addr_date" parameterType="dto.AdopttimeDto_second" resultType="dto.PetsitterDto">
+		select * from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') and (#{wdate_start} >= ps_sdate and ps_fdate>= #{wdate_final}) order by idx desc limit #{StartNo},#{pageSize}
+	</select>
+	
+	<select id ="getCount_terms" resultType="int" parameterType="dto.AdopttimeDto">
+		select count(*) from ps_board where terms LIKE CONCAT('%', #{terms}, '%')   
+	</select>
+	
+	<select id ="PetSitter_Select_terms" parameterType="dto.AdopttimeDto_second" resultType="dto.PetsitterDto">
+		select * from ps_board where terms LIKE CONCAT('%', #{terms}, '%') order by idx desc limit #{StartNo},#{pageSize}
+	</select>
+	
 </mapper>
 <!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
      #{ } : 무조건 문자열(' '기호사용)로 중괄호 안의 값을 처리합니다.

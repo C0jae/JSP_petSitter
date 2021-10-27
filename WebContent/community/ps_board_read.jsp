@@ -7,94 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>펫시터 게시글 보기</title>
-<style type="text/css">
-	.g_container {
-		text-align: center;
-	}
-	
-	.ps_baord_main {
-		font-family: "Spoqa Han Sans", "Noto Sans KR", sans-serif;
-		font-size: 14px;
-		line-height: 21px;
-		
-		height: 3650px;
-		width: 1050px;
-		margin-left: 20%;
-		display: flex;
-		
-	}
-	
-	.box1 {
-		width: 580px;
-		min-height: auto;
-		min-width: auto;
-		display: block;
-	}
-	
-	.box2 {
-		font-size: 17px;
-		font-weight: bold;
-	}
-	
-	.box3 {
-		border: 1px solid #DFE3EA;
-		min-height: auto;
-		min-width: auto;
-		border-radius: 12px;
-		line-height: 40px;
-	}
-	
-	.ps_board_sub {
-		border: 1px solid #DFE3EA;
-		border-radius: 12px;
-	}
-	
-	.box4 {
-		margin-left: 20px;
-		margin-bottom: 20px;
-		margin-top: 20px;
-		margin-right: 20px;
-	}
-	
-	.rsvBtn {
-		height: 60px;
-		width: 300px;
-		background-color: #aabb97;
-		border: none;
-		color: white;
-		text-align: center;
-		display: inline-block;
-		transition-duration: 0.4s;
-		cursor: pointer;
-		padding: 5px;
-		border-radius: 12px;
-		font-size: 15px;
-		font-weight: bold;
-		margin-left: 40px;
-	}
-	
-	.size1 {
-		width: 20%;
-	}
-	
-	.size2 {
-		width: 55%;
-		font-size: 10px;
-	}
-	
-	.size3 {
-	}
-</style>
+<link rel="stylesheet" href="../css/ps_board.css?v=3">
 </head>
 <body>
 	<%@ include file="../top.jsp" %>
-	<br><br><br><br>
+	<br><br><br><br><br>
 	<div class="g_container">
 			<div class="g_thumbnail">
-				<img alt="gallery" src="/img/${ps_board.g_fname}" style="width: 700px; height: 300px;">
-			</div>
+				<img alt="gallery" src="/img/${ps_board.g_fname}" style="width: 800px; height: 350px;">
+			</div><hr>
 	</div>
-	<hr>
 	<div class="ps_baord_main">
 		<div style="margin-right: 50px;">
 			<div class="box1">
@@ -137,7 +59,7 @@
 				</c:forEach>
 			</div>
 			<div class="box2"><h4>자격증 및 교육수료</h4></div>
-			<div class="box3" style="height: 50px; width: 250px; display: flex;">
+			<div class="box3" style="height: 50px; width: 300px; display: flex;">
 				&nbsp&nbsp&nbsp&nbsp${petSitter.license}
 			</div> <br>
 			<div class="box2"><h4>펫시터 후기
@@ -145,23 +67,58 @@
 				<c:if test="${rateCnt != null}"> ${rateCnt}개 </c:if>
 				<c:if test="${rateCnt != null}"> ${rate}점 </c:if>
 			</h4></div>
-			<div>후기 게시판</div>
+			<div style="width: 70%;">
+				<div>
+					<c:forEach var="review" items="${review}">
+						<div class="box3">
+							<div class="reviewBox">
+								<div style="display: flex; height: 30px;">
+									<div style="width: 30%;"><h3>${review.nick} 님</h3></div>
+									<div class="star" style="width: 70%; text-align: right;">
+										<c:forEach var="i" begin="1" end="${rate}">★</c:forEach>
+									</div>
+								</div>
+								<div style="text-align: right; height: 40px;"><h5>${review.r_date}</h5></div>
+								<div style="font-size: bold;">${review.content}</div>
+							</div>
+						</div><br>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 		<div>
 			<form method="post" name="reserve" action="./ps_reserve.do">
 				<c:if test="${user == null}">
-					<input type="hidden" name="state" value="비로그인">
+					<input type="hidden" name="state" value="notLogin">
+				</c:if>
+				<c:if test="${user != null}">
+					<input type="hidden" name="idx" value="${user.idx}">
 				</c:if>
 				<input type="hidden" name="ps_idx" value="${ps_idx}">
-				<input type="hidden" name="s_date" value="${s_date}">
-				<input type="hidden" name="f_date" value="${f_date}">
+				<input type="hidden" name="psb_idx" value="${ps_board.psb_idx}">
 				<div class="ps_board_sub" style="margin: 80px">
 					<div class="box4">
 						<div class="box2"><h4>기간</h4></div>
 						<div class="box3" style="text-align: center; font-size: 15px; display: flex;">
-							<div style="width: 33%; text-align: center;">${s_date}</div>
-							<div style="width: 33%; text-align: center;">~</div>
-							<div style="width: 33%; text-align: center;">${f_date}</div>
+							<div style="width: 45%; text-align: center;">
+								<c:if test="${s_date == ''}">
+									<input type="date" class="dateBox" name="s_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}" onchange="sdate()" id="sdate">
+								</c:if>
+								<c:if test="${s_date != ''}">
+									<input type="hidden" name="s_date" value="${s_date}">
+									${s_date}
+								</c:if>
+							</div>
+							<div style="width: 10%; text-align: center;">~</div>
+							<div style="width: 45%; text-align: center;">
+								<c:if test="${f_date == ''}">
+									<input type="date" class="dateBox" name="f_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}">
+								</c:if>
+								<c:if test="${f_date != ''}">
+									<input type="hidden" name="f_date" value="${f_date}">
+									${f_date}
+								</c:if>
+							</div>
 						</div>
 						<div class="box2"><h4>맡기시는 반려동물</h4></div>
 						<div class="box3">
@@ -210,7 +167,11 @@
 							<div id="result2" style="font-size: 13px;"></div>
 							<div id="result3" style="font-size: 13px;"></div>
 						</div><br>
-						<div><input type="button" value="예약요청" class="rsvBtn" onclick="check()"></div>
+						<div>
+							<c:if test="${user.idx != petSitter.idx}">
+								<input type="button" value="예약요청" class="rsvBtn" onclick="check()">
+							</c:if>
+						</div>
 					</div>
 				</div>
 			</form>
@@ -241,9 +202,9 @@
 			</div>
 			<div class="ps_board_sub" style="margin: 80px">
 				<div class="box2" style="display: flex; margin-left: 20px; margin-right: 20px;">
-					<div style="width: 50%;"><h4>${petSitter.nick} 님의 위치 :</h4></div>
-					<div style="width:50%; text-align: center;"><h4>${ps_board.m_addr}</h4></div>
-					<input type="hidden" id="addr" value="${ps_board.m_addr}${petSitter.s_addr}">
+					<div style="width: 35%;"><h4>${petSitter.nick} 님의 위치 :</h4></div>
+					<div style="width: 65%; text-align: center;"><h5>${ps_board.m_addr}</h5></div>
+					<input type="hidden" id="addr" value="${ps_board.m_addr}">
 				</div>
 				<div>
 					<div id="map" style="width:100%;height:350px;"></div>
@@ -286,9 +247,28 @@
 					</script>
 				</div>
 			</div>
+			<div>
+				<c:if test="${user.nick == petSitter.nick || user.admin == '1'}">
+					<div style="display: flex; margin-left: 160px;">
+							<a class="btn" href="ps_boardUpdate.do?psb_idx=${ps_board.psb_idx}&nick=${petSitter.nick}">수정</a>
+							<a class="btn" href="ps_boardDelete.do?psb_idx=${ps_board.psb_idx}" onclick="delCheck()">삭제</a>
+					</div>
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
+		function delCheck(){
+			const yn = confirm('게시글을 삭제하시겠습니까?');
+			if(yn) {
+				document.reserve.submit();
+			}
+			else {
+				modal.style.display = "none";
+				return false;
+			}
+		}
+		
 		function check() {
 			const yn = confirm('예약하시겠습니까? 해당금액만큼 포인트가 차감됩니다.');
 			if (yn) {
@@ -335,7 +315,12 @@
 		    document.getElementById("result").innerHTML = "합계금액 : " + pay + "원 (1박기준)";
 		    document.getElementById("result2").innerHTML = "비용 : " + money + "원";
 		    document.getElementById("result3").innerHTML = "부가세(10%) : " + vat + "원";
-		    
+		}
+		
+		function sdate() {
+			var sdate = 0;
+			sdate = document.getElementById("sdate").value;
+			document.getElementById("startDate").innerHTML = sdate;
 		}
 		
 		

@@ -13,9 +13,10 @@ public class SessionDto {
 	private String name;
 //	private String password;
 	private String nick;
-//	private String tel;
-//	private String m_addr;
-//	private String s_addr;
+	private String tel;
+	private String m_addr;
+	private String s_addr;
 	private int point;
 	private String p_auth;
+	private int admin;
 }
