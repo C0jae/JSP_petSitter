@@ -57,11 +57,12 @@ public class Ps_reserveAction implements Action {
 			 int idx = Integer.parseInt(request.getParameter("idx")); // 예약자 idx
 			 int ps_idx = Integer.parseInt(request.getParameter("ps_idx")); // 펫시터 idx
 			 
-			 System.out.println("gd : " + request.getParameter("s_date"));
+			 System.out.println("gd : " + request.getParameter("idx"));
+			 System.out.println("gd : " + request.getParameter("ps_idx"));
 			 
 			 if(request.getParameter("s_date") == "" || request.getParameter("f_date") == "") {
 				 String message = "날짜를 입력해주세요.";
-				 String url = "/ps_board_read.do?idx="+idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
+				 String url = "/ps_board_read.do?idx="+ps_idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
 				 
 				 request.setAttribute("message", message);
 				 request.setAttribute("url", url);
@@ -99,7 +100,18 @@ public class Ps_reserveAction implements Action {
 			 
 			 if(small == 0 && middle == 0 && big == 0) {
 				 String message = "맡기시는 펫의 수를 정확히 입력해주세요.";
-				 String url = "/ps_board_read.do?idx="+idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
+				 String url = "/ps_board_read.do?idx="+ps_idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
+				 
+				 request.setAttribute("message", message);
+				 request.setAttribute("url", url);
+				 
+				 forward.isRedirect = false;
+				 forward.url = "error/alert.jsp";
+				 return forward;
+			 }
+			 else if(small < 0 || middle < 0 || big < 0) {
+				 String message = "맡기시는 펫의 수를 정확히 입력해주세요.";
+				 String url = "/ps_board_read.do?idx="+ps_idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
 				 
 				 request.setAttribute("message", message);
 				 request.setAttribute("url", url);
@@ -122,7 +134,7 @@ public class Ps_reserveAction implements Action {
 				 
 				 if (diffDays < 0) {
 				 String message = "체크아웃 날짜가 체크인 날보다 빠를수 없습니다.";
-				 String url = "/ps_board_read.do?idx="+idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
+				 String url = "/ps_board_read.do?idx="+ps_idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
 				 
 				 request.setAttribute("message", message);
 				 request.setAttribute("url", url);
@@ -158,7 +170,7 @@ public class Ps_reserveAction implements Action {
 			 if (mdto.getPoint() < pay) { // 예약자의 포인트가 결제금액보다 적을때
 				 String message = "결제에 실패하였습니다.";
 				 String message2 = "잔여 포인트를 확인해주세요";
-				 String url = "/ps_board_read.do?idx="+idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
+				 String url = "/ps_board_read.do?idx="+ps_idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
 				 
 				 request.setAttribute("message", message);
 				 request.setAttribute("message2", message2);

@@ -105,6 +105,22 @@ public class Select_PetSitter_Action implements Action {
 			forward.isRedirect=false;
 			forward.url="petsitter/home_View.jsp";
 			return forward; 
+		}else if(wdate_start.equals("") && wdate_final.equals("")){ //추가
+			
+			PageDto pageDto = new PageDto(pageNo,cdao.getCount_Adrr_terms(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);
+			
+			int StartNo = pageDto.getStartNo();
+			
+			AdopttimeDto_second adopt_second = new AdopttimeDto_second(m_addr,wdate_start,wdate_final,terms,pageSize,StartNo);
+			
+			List<PetsitterDto> cmts = cdao.select_Adrr_terms(adopt_second);
+
+			request.setAttribute("pageDto",pageDto);
+			request.setAttribute("cmtlist",cmts); 
+			
+			forward.isRedirect=false;
+			forward.url="petsitter/home_View.jsp";
+			return forward; 
 		}else{
 
 			PageDto pageDto = new PageDto(pageNo,cdao.getCount(adopt),pageSize,m_addr,wdate_start,wdate_final,terms);

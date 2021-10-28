@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>펫시터 게시글 보기</title>
-<link rel="stylesheet" href="../css/ps_board.css?v=3">
+<link rel= "stylesheet" href="../css/ps_board.css?v=3">
 </head>
 <body>
 	<%@ include file="../top.jsp" %>
@@ -17,7 +17,7 @@
 				<img alt="gallery" src="/img/${ps_board.g_fname}" style="width: 800px; height: 350px;">
 			</div><hr>
 	</div>
-	<div class="ps_baord_main">
+	<div class="ps_board_main">
 		<div style="margin-right: 50px;">
 			<div class="box1">
 				<div style="font-size: 15px; line-height: 22px;">

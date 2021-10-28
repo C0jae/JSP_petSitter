@@ -131,7 +131,7 @@ ul.mylist , ol.mylist  {
 			<div class="box6">
 				<h2>★펫시터 목록★</h2>
 				<c:if test="${pageDto.totalCount == null || pageDto.totalCount ==0}">
-						<img src = "/img/cat_select_empty.png" >
+						<img src = "/img/select_empty.png" >
 						<h3>펫시터를 조회해주시거나 다시 조회해주세요. </h3>
 				</c:if>
 			</div>

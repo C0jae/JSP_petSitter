@@ -13,7 +13,6 @@
 
 </head>
 <body>
-
 	<h1 style= "color: #aabb97;">펫 정보 입력</h1>
 	<form name = "petinsert" method="post" action="../petInsert.do">
 		<script>

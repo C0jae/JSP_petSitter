@@ -46,7 +46,6 @@
 					     브라우저 출력은 줄바꿈은 <br> 태그 해결1) pre 태그, 해결2) \n을 <br>로 대치-->	
 					<li>
 						<pre>${bean.content}</pre>
-					
 					</li>				
 				</ul>
 			</li>

@@ -116,7 +116,7 @@ public class Ps_boardDao {
 		mapper.close();
 	}
 	
-	public int checkIncome() {
+	public int checkIncome() {	// 수익 체크
 		SqlSession mapper = factory.openSession();
 		String income = mapper.selectOne("ps_board.checkIncome");
 		int income2 = Integer.parseInt(income);

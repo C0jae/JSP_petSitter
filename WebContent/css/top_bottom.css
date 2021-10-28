@@ -27,6 +27,13 @@ a.home{
 	text-decoration:none;
 	
 }
+
+@media screen and (max-width:768px) {
+    a.home {
+        font-size : 0em;
+    }
+}
+
 a.menu {   
     text-decoration: none;
     font-family: 'Gugi', cursive;
@@ -128,7 +135,7 @@ body::before{
         background-size: cover;
         background-repeat: no-repeat;
         opacity: 0.15;
-        position: absolute;
+        position: fixed;
         top: 0px;
         left: 0px;
         right: 0px;
@@ -143,6 +150,7 @@ body::before{
   	right: 110px;
   	top: 10px;
 	color: rgb(57, 60, 71);
+	text-decoration: none;
 }
 .register{
 	font-family: 'Gugi', cursive;
@@ -151,10 +159,11 @@ body::before{
   	right: 20px;
   	top: 10px;
 	color: rgb(57, 60, 71);
+	text-decoration: none;
 }
 
 #footer {
- 	position: absolute;
+ 	position: inherit;
  	text-align: center;
     width: 100%;
     background: #94af76;

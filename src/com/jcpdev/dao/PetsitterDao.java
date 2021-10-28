@@ -118,4 +118,22 @@ public class PetsitterDao {
 		return list;
 	}
 	
+	//주소와 체크박스만 기입을 했을때
+	public int getCount_Adrr_terms(AdopttimeDto addr_terms) {   //추가
+		SqlSession mapper = factory.openSession();
+		int cnt = mapper.selectOne("petsitter.getCount_Adrr_terms",addr_terms);
+		mapper.close();     
+		return cnt;
+	}
+		
+	//조건만 체크하고 조회했을때 행의갯수
+	public List<PetsitterDto> select_Adrr_terms(AdopttimeDto_second Adrr_terms) { //추가
+		//SqlSession mapper = sqlFactory.openSession(true); //auto commit을 true
+		List<PetsitterDto> list = null;
+		SqlSession mapper = factory.openSession();
+		list = mapper.selectList("petsitter.select_Adrr_terms",Adrr_terms); 
+		mapper.close();
+		return list;
+	}
+	
 }

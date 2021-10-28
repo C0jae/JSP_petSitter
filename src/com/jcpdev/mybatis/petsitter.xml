@@ -49,6 +49,14 @@
 		select * from ps_board where terms LIKE CONCAT('%', #{terms}, '%') order by idx desc limit #{StartNo},#{pageSize}
 	</select>
 	
+	<select id ="getCount_Adrr_terms" resultType="int" parameterType="dto.AdopttimeDto">
+		select count(*) from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') and terms LIKE CONCAT('%', #{terms}, '%')  
+	</select>
+	
+	<select id ="select_Adrr_terms" parameterType="dto.AdopttimeDto_second" resultType="dto.PetsitterDto">
+		select * from ps_board where m_addr LIKE CONCAT('%', #{m_addr}, '%') and terms LIKE CONCAT('%', #{terms}, '%')  order by idx desc limit #{StartNo},#{pageSize}
+	</select>
+	
 </mapper>
 <!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력
      #{ } : 무조건 문자열(' '기호사용)로 중괄호 안의 값을 처리합니다.

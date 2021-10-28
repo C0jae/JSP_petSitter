@@ -49,7 +49,7 @@
 					<td colspan="2" style="text-align: center">
 					<input type="submit" value="수정하기"> 
 					<input type="button" value="탈퇴하기" onclick="deleteOk()">
-					<input type="button" value="고객목록" onclick="location.href='list.do'"></td>
+					<input type="button" value="돌아가기" onclick="location.href='list.do'"></td>
 				</tr>
 			</table>
 		</form>

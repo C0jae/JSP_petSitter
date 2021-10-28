@@ -28,18 +28,24 @@ function post_data() {
  		<td><input type="text" name="name" size="50" value="${bean.nick}" disabled></td>
  	</tr>
  	<tr><th>평점</th>
- 	<td> <div class="star-rating">
-	<input type="radio" id="5-stars" name="rate" value="5" checked="checked" />
-  	<label for="5-stars" class="star">&#9733;</label>
-  	<input type="radio" id="4-stars" name="rate" value="4" />
-  	<label for="4-stars" class="star">&#9733;</label>
-  	<input type="radio" id="3-stars" name="rate" value="3" />
-  	<label for="3-stars" class="star">&#9733;</label>
-  	<input type="radio" id="2-stars" name="rate" value="2" />
-  	<label for="2-stars" class="star">&#9733;</label>
-  	<input type="radio" id="1-star" name="rate" value="1" />
-  	<label for="1-star" class="star">&#9733;</label>
-  	</div>
+ 	<td>
+ 		<div class="star-rating">
+	        <input type="radio" id="5-stars" name="rate" value="5"
+	        <c:if test="${bean.rate == 5 }">checked</c:if>> 
+	        <label for="5-stars" class="star">&#9733;</label>
+	        <input type="radio" id="4-stars" name="rate" value="4"
+	        <c:if test="${bean.rate == 4 }">checked</c:if>> 
+	        <label for="4-stars" class="star">&#9733;</label>
+	        <input type="radio" id="3-stars" name="rate" value="3"
+	        <c:if test="${bean.rate == 3 }">checked</c:if>> 
+	        <label for="3-stars" class="star">&#9733;</label>
+	        <input type="radio" id="2-stars" name="rate" value="2"
+	        <c:if test="${bean.rate == 2 }">checked</c:if>> 
+	        <label for="2-stars" class="star">&#9733;</label>
+	        <input type="radio" id="1-star" name="rate" value="1"
+	        <c:if test="${bean.rate == 1 }">checked</c:if>>
+	        <label for="1-star" class="star">&#9733;</label>
+     	</div>
  	<tr><th>내용</th>  <!-- textarea 의 크기 : rows="20" cols="80" -->
  		<td><textarea  rows="20" cols="80" name="content" required>${bean.content}</textarea></td>
  	</tr>
