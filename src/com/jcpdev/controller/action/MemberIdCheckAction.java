@@ -23,10 +23,11 @@ public class MemberIdCheckAction implements Action {
 
 	    String id = request.getParameter("id");
 	    
+	    System.out.println(id);
+	    
 	    MembersDao dao = MembersDao.getInstance();
 
 		int count= dao.IdCheck(id);
-		System.out.println(count);
 		out.print("<script>");
 		String message=null;
 		String href=null;

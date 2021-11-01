@@ -23,14 +23,14 @@ public class MemberNickCheckAction implements Action {
 
 	    String nick = request.getParameter("nick");
 	    
+	    System.out.println(nick);
+	    
 	    MembersDao dao = MembersDao.getInstance();
 
 		int cnt= dao.NickCheck(nick);
-		System.out.println(cnt);
 		out.print("<script>");
 		String message=null;
 		String href=null;
-		System.out.println(cnt);
 		if(cnt == 0){ 
 			message ="사용가능한 닉네임 입니다.";
 			href="success2.do";
