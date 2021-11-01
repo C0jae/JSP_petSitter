@@ -51,7 +51,7 @@
 			</li>
 		</ul>
 	<div style="text-align: center;margin-bottom: 10px;">
-		<c:if test="${sessionScope.user.idx==bean.idx }">
+		<c:if test="${sessionScope.user.idx==bean.idx || user.admin == '1' }">
 		<a class="button" href="rbupdate.do?r_idx=${bean.r_idx}&page=${page}">수정</a>
 		<%-- <a class="button" href="rbdelete.do?r_idx=${bean.r_idx}&page=${page}">삭제</a> --%>
 		<a class="button" onclick="deleteSet()">삭제</a>

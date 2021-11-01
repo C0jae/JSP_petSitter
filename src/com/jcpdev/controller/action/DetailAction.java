@@ -47,8 +47,6 @@ public class DetailAction implements Action {
 		
 		List<Comment> cmts = cdao.getComments(q_idx);
 		
-		System.out.println("comment : "+cmts);
-		
 		String qc_cnt = cdao.qc_cnt(q_idx);
 		request.setAttribute("qc_cnt", qc_cnt);
 		

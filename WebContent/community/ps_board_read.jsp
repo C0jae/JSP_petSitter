@@ -207,45 +207,46 @@
 					<input type="hidden" id="addr" value="${ps_board.m_addr}">
 				</div>
 				<div>
-					<div id="map" style="width:100%;height:350px;"></div>
+				<div id="map" style="width:100%;height:350px;"></div>
 
-					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86c0773d8189ca233acd039192c7bcd1&libraries=services"></script>
-					<script>
-					var addr = document.getElementById("addr").value;
-					console.log(addr);
-					
-					var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-					
-					var mapContainer = document.getElementById('map'),
-					    mapOption = {
-					        center: new kakao.maps.LatLng(37.566826, 126.9786567),
-					        level: 3
-					    };  
-					
-					var map = new kakao.maps.Map(mapContainer, mapOption); 
-					
-					var ps = new kakao.maps.services.Places(); 
-					
-					ps.keywordSearch(addr, placesSearchCB); 
-					
-					function placesSearchCB (data, status, pagination) {
-					    if (status === kakao.maps.services.Status.OK) {
-					
-					        var bounds = new kakao.maps.LatLngBounds();
-					
-					        for (var i=0; i<data.length; i++) {
-					            displayMarker(data[i]);    
-					            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-					        }       
-					
-					        map.setBounds(bounds);
-					    } 
-					}
-					
-					function displayMarker(place) {
-					}
-					</script>
-				</div>
+				<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f8c9cf76d69950dd4646c5440040a79&libraries=services"></script> -->
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	86c0773d8189ca233acd039192c7bcd1&libraries=services"></script>
+				<script>
+				var addr = document.getElementById("addr").value;
+				console.log(addr);
+				
+				var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+				
+				var mapContainer = document.getElementById('map'),
+				    mapOption = {
+				        center: new kakao.maps.LatLng(37.566826, 126.9786567),
+				        level: 3
+				    };  
+				
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+				var ps = new kakao.maps.services.Places(); 
+				
+				ps.keywordSearch(addr, placesSearchCB); 
+				
+				function placesSearchCB (data, status, pagination) {
+				    if (status === kakao.maps.services.Status.OK) {
+				
+				        var bounds = new kakao.maps.LatLngBounds();
+				
+				        for (var i=0; i<data.length; i++) {
+				            displayMarker(data[i]);    
+				            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+				        }       
+				
+				        map.setBounds(bounds);
+				    } 
+				}
+				
+				function displayMarker(place) {
+				}
+				</script>
+			</div>
 			</div>
 			<div>
 				<c:if test="${user.nick == petSitter.nick || user.admin == '1'}">

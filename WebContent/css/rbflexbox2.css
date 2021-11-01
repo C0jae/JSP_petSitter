@@ -1,4 +1,7 @@
 /* a태그 모양 바꾸기 */
+body{
+	font-family: 'Gugi', cursive;
+}
 a.menu {
     text-decoration: none;
     color: white;

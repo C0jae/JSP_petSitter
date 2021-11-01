@@ -1,4 +1,7 @@
 @charset "UTF-8";
+body{
+	font-family: 'Gugi', cursive;
+}
 ul {
 	list-style: none;
 	padding-inline-start:0px;
@@ -94,6 +97,8 @@ span {
 	min-height: 70px;
 	margin-bottom: 8px;
 	padding : 8px 4px;
+	font-family: 'Gugi', cursive;
+
 }
 .name {
 	width:30%;
@@ -120,7 +125,7 @@ pre{
 	color : black;
 	padding-bottom: 10px;
 	line-height: 1.5em;
-	font-family: 맑은고딕, Malgun Gothic,sans-serif;
+	font-family: 'Gugi', cursive;
 }
 
 

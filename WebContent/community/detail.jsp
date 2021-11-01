@@ -17,8 +17,9 @@
 
 <section>
 	<!-- 문서가 생성될때 실행 -->
+	<br><br>
 	<h3>Q&A 게시판</h3>
-	<hr>
+	<hr><br>
 	<div style="width: 80%; margin: auto;max-width: 700px;">
 		<ul id="main">
 			<li>
@@ -96,7 +97,9 @@
 				<li>
 					<ul>
 				  		<li style="float: left;">${cmt.nick }</li>
-						<li style="float: right;"><a style="color: red; font-size: 0.8em;" href="javascript:deleteCmt('${cmt.qc_idx }','${bean.q_idx }','${page }')">삭제</a></li>
+				  		<c:if test="${user.admin == 1}">
+							<li style="float: right;"><a style="color: red; font-size: 0.8em;" href="javascript:deleteCmt('${cmt.qc_idx }','${bean.q_idx }','${page }')">삭제</a></li>
+				  		</c:if>
 					</ul>
 				</li>
 				<li>

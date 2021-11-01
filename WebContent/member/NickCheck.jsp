@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <script>
-    function wlose() {
+  function wlose() {
       opener.window.document.frmReg.nick.value = frmre.nick.value;
     }
   </script>

@@ -10,8 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
+import dao.CommentDao;
 import dao.Q_boardDao;
 import dto.Q_board;
+import dto.Comment;
 import dto.PageDto2;
 
 public class ListAction implements Action {
@@ -37,7 +41,17 @@ public class ListAction implements Action {
 		map.put("pageSize",pageSize);
 		map.put("startNo",pageDto.getStartNo());
 		List<Q_board> list = dao.getList(map);
+		
+		System.out.println("list : "+list);
 
+		/*
+		 * for (Q_board q_board : list) { int q_idx = q_board.getQ_idx();
+		 * 
+		 * int b = dao.qc_cnt(q_idx); q_board.setQc_cnt(q_idx) = b; }
+		 */
+		
+		
+		
 		request.setAttribute("today", LocalDate.now());
 		request.setAttribute("pageDto", pageDto);     //페이지처리에 필요한 값들
 		request.setAttribute("list", list);

@@ -39,6 +39,9 @@
 		update q_board set q_cnt = q_cnt +1 where q_idx=#{q_idx}
 	</update>
 	
+	<select id="qc_cnt" parameterType="int" resultType="int">
+		select count(*) from q_comment where q_idx = #{q_idx};
+	</select>	
 	
 </mapper>
 <!-- ${ } : 표현식. 중괄호안에 수식에 대한 연산결과값을 구해서 출력

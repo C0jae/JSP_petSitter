@@ -22,7 +22,7 @@ public class MemberUpdateAction implements Action {
 
 		request.setAttribute("dto", dto);
 		
-		if (alert!=null) request.setAttribute("alert", "y");    
+		if (alert!=null) request.setAttribute("alert", "y");
 		
 		ActionForward forward = new ActionForward();
 		forward.isRedirect = false;

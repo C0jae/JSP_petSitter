@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /* css 변경이 브라우저에 바로 반영이 안되면 ctrl + f5  */
+
+body{
+	font-family: 'Gugi', cursive;
+}
 ul {
 	list-style: none;
 }

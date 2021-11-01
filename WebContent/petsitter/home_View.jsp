@@ -20,6 +20,9 @@
 </script>
 <!--<link rel="stylesheet" href="../web.css?v=1"> -->
 <style>
+body{
+font-family: 'Gugi', cursive;
+}
 .div1{
 	text-align:center;
 	width:100%;
@@ -89,6 +92,7 @@ ul.mylist , ol.mylist  {
 .Main_container{
 	width: 100%;
     height: 100%;
+    
 }
 
 .thumbnail { padding:10px 20px 10px; border:none; width:400px; text-align:center; margin-left: 53px;}
@@ -104,7 +108,7 @@ ul.mylist , ol.mylist  {
 		<div class = "div1">
 			<div class = "box1">
 				<label>주소 :</label>
-				<input type="text" name="m_addr" placeholder="주소를 입력해주세요(ex)서울시)">&nbsp;&nbsp;
+				<input type="text" name="m_addr" placeholder="주소를 입력해주세요(ex)서울)">&nbsp;&nbsp;
 				<label>날짜 :</label> 
 				<input type="date" name="wdate_start" value="s_date">&nbsp;~
 				<input type="date" name="wdate_final" value="f_date">
@@ -124,7 +128,7 @@ ul.mylist , ol.mylist  {
 			</div>
 		</div>
 		<div style="margin:auto;">
-		 	<a class="button" href="${pageContext.request.contextPath }">홈으로 돌아가기 ${pageContext.request.contextPath }
+		 	<a class="button" style="font-family: 'Gugi', cursive;"href="${pageContext.request.contextPath }">홈으로 돌아가기 ${pageContext.request.contextPath }
 		 	</a>&nbsp;&nbsp;&nbsp;"${pageDto.m_addr}" 로 검색한 지원자 : ${pageDto.totalCount } 명입니다.
 		</div>
 		<div class="box4">

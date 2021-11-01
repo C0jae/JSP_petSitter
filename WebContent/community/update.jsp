@@ -10,9 +10,11 @@ function post_data() {
 	frm1.submit();
 }
 </script>
-<link rel="stylesheet" href="../css/temp.css?v=3">
+<!-- <link rel="stylesheet" href="../css/temp.css?v=3"> -->
+<link rel="stylesheet" href="../css/join.css?v=3">
 </head>
 <body>
+<%@ include file="../top.jsp" %>
 <section>
 <h3>q&a글 수정</h3>
 <hr>

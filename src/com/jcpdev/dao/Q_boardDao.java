@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import dto.Comment;
 import dto.Q_board;
 import mybatis.SqlSessionBean;
 
@@ -78,6 +79,14 @@ public class Q_boardDao {
 		mapper.update("q_board.q_cnt", idx);
 		mapper.commit();
 		mapper.close();
+	}
+	
+	public int qc_cnt(int q_idx) {
+		
+		SqlSession mapper =factory.openSession();
+		int a =mapper.selectOne("q_board.qc_cnt", q_idx);
+		mapper.close();
+		return a;
 	}
 	
 }

@@ -1,13 +1,17 @@
 package controller.action;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MembersDao;
 import dto.Member;
+import dto.SessionDto;
 
 public class MemberModifyAction implements Action {
 
@@ -31,6 +35,26 @@ public class MemberModifyAction implements Action {
 		
 		MembersDao dao = MembersDao.getInstance();     
 		dao.update(dto);
+		
+		dto = dao.select(idx);
+		
+		HttpSession session = request.getSession();
+		
+		String id = dto.getId();
+		password = dto.getPassword();
+		
+		if(session.getAttribute("readIdx") ==null){
+			StringBuilder readIdx=new StringBuilder("/");
+			session.setAttribute("readIdx",readIdx);
+		}
+
+		Map<String,String> map = new HashMap<>();
+		map.put("id",id);
+		map.put("password",password);
+
+		SessionDto user = dao.login(map);
+		session.setAttribute("user", user);
+		
 		
 		ActionForward forward = new ActionForward();
 		forward.isRedirect = true;

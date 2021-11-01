@@ -16,7 +16,7 @@
 <section>
 <br>
 <!-- <h3>Q&A 게시판&nbsp;</h3> -->
-<br><br><br>
+<br><br><br><br>
 <div style="float:right;">
  	<a class="button" href="/qnaWrite.do">글쓰기</a>
 </div>
@@ -39,8 +39,9 @@
 	<ul  class="row">
 		<li>${vo.q_idx }</li>
 		<li><a href="qnaDetail.do?q_idx=${vo.q_idx}&page=${pno}" class="title">${vo.title }</a>
-	   		 ...<span style="color:orange;font-size: 80%;">(${vo.qc_cnt })
-	 		</span> </li>
+	   		<%--  ...<span style="color:orange;font-size: 80%;">(${vo.qc_cnt })
+	 		</span> --%>
+	 	</li>
 		<li>${vo.nick }</li>
 		<li>${vo.q_cnt }</li>
 		<li>

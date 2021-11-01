@@ -38,7 +38,7 @@
 				<th>성별</th>
 				<td>
 				<label for="female" class="l-radio">
-				<input type="radio" name="p_gender" value="female" id="female">
+				<input type="radio" name="p_gender" value="female" id="female" checked="checked">
 				<span>여자아이</span>
 				</label>
 				
@@ -54,13 +54,13 @@
 			</tr>
 			<tr>
 				<th>생일</th>
-				<td><input type="date" name="p_birth" id="p_birth" value="2021-01-01"></td>
+				<td><input type="date" name="p_birth" id="p_birth" value="2021-01-01" required></td>
 			</tr>	
 			<tr>	
 				<th>중성화</th>
 				<td>
 				<label for="neu_y" class="l-radio">
-				<input type="radio" name="p_neu" value ="neu" id="neu_y">
+				<input type="radio" name="p_neu" value ="neu" id="neu_y" checked="checked">
 				<span>했어요</span>
 				</label>
 				<label for="neu_n" class="l-radio">

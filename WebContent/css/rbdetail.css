@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body{
+	font-family: 'Gugi', cursive;
+}
 h2 {
 	font-family: 'Gugi', cursive;
 	font-size: 39px;
@@ -141,7 +144,7 @@ pre {
 	font-size: 1.1em;
 	padding-bottom: 10px;
 	line-height: 1.5em;
-	font-family: 맑은고딕, Malgun Gothic, sans-serif;
+	font-family: 'Gugi', cursive;
 }
 
 /* 글 비밀번호 입력 모달 */

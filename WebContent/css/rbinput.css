@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body{
+	font-family: 'Gugi', cursive;
+}
+
 table {
 	width : 70%;
 	margin: auto;
