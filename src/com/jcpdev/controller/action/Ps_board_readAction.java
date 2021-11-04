@@ -1,3 +1,8 @@
+/*
+ *  작성자 : 최영재
+ *  기능 : 펫시터 게시글 불러오기(상세내용)
+ */
+
 package controller.action;
 
 import java.io.IOException;
@@ -30,8 +35,8 @@ public class Ps_board_readAction implements Action {
 		int ps_idx = Integer.parseInt(request.getParameter("idx"));	// 펫시터의 idx
 		int psb_idx = Integer.parseInt(request.getParameter("psb_idx"));	// 펫시터 게시판 idx
 
-		String s_date = request.getParameter("s_date");
-		String f_date = request.getParameter("f_date");
+		String s_date = request.getParameter("s_date");	// 희망 시작일
+		String f_date = request.getParameter("f_date");	// 희망 종료일
 		request.setAttribute("s_date", s_date);
 		request.setAttribute("f_date", f_date);
 		
@@ -51,9 +56,8 @@ public class Ps_board_readAction implements Action {
 		String rateCnt = dao.rateCnt(ps_nick);	// 펫시터의 후기 게시판 갯수 불러오기
 		request.setAttribute("rateCnt", rateCnt);
 		
+		// 후기가 있을경우
 		if(rateCnt != null) {
-			System.out.println("dd");
-			System.out.println("평점 : " +dao.rate(ps_nick));
 			double rate = dao.rate(ps_nick);	// 펫시터의 평점 불러오기
 			double rate1 = rate * 10;
 			rate1 = ((double)Math.round(rate1))/10;

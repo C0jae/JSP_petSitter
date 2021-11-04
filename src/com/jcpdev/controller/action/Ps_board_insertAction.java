@@ -1,3 +1,8 @@
+/*
+ *  작성자 : 최영재
+ *  기능 : 펫시터 게시글 등록
+ */
+
 package controller.action;
 
 import java.io.IOException;
@@ -27,26 +32,30 @@ public class Ps_board_insertAction implements Action {
 		
 		Ps_boardDao dao = Ps_boardDao.getInstance();
 		request.setCharacterEncoding("UTF-8");
+		
+		
+		// 사진파일 받아올 경로 및 크기 설정
 		String path = "E:\\Program\\upload";
 		int size=10*1024*1024;
 		MultipartRequest mr = new MultipartRequest(request, path, size, "UTF-8",
 				new DefaultFileRenamePolicy());
 		
-		int idx = Integer.parseInt(mr.getParameter("idx"));
-		
-		String title = mr.getParameter("title");
-		String content = mr.getParameter("content");
-		String ps_sdate = mr.getParameter("ps_sdate");
-		String ps_fdate = mr.getParameter("ps_fdate");
-		String[] p_size = mr.getParameterValues("size");
-		String[] terms = mr.getParameterValues("terms");
-		String m_addr = mr.getParameter("m_addr");
-		String g_fname = mr.getFilesystemName("pic");
-		String comment = mr.getParameter("comment");
+		// 입력받은 게시글 내용 및 정보 불러오기(회원idx, 제목, 내용, 날짜 등)
+		int idx = Integer.parseInt(mr.getParameter("idx")); // 펫시터 idx
+		String title = mr.getParameter("title");			// 제목
+		String content = mr.getParameter("content");		// 내용
+		String ps_sdate = mr.getParameter("ps_sdate");		// 시작일
+		String ps_fdate = mr.getParameter("ps_fdate");		// 종료일
+		String[] p_size = mr.getParameterValues("size");	// 맡을 수 있는 반려동물 크기(소형, 중형, 대형)
+		String[] terms = mr.getParameterValues("terms");	// 조건(마당있음, 픽업가능 등)
+		String m_addr = mr.getParameter("m_addr");			// 기본주소
+		String g_fname = mr.getFilesystemName("pic");		// 사진
+		String comment = mr.getParameter("comment");		// 코멘트
 
 		Date ps_sdate1 = Date.valueOf(ps_sdate);
 		Date ps_fdate1 = Date.valueOf(ps_fdate);
 		
+		// 불러온 값을 Ps_board에 정의
 		Ps_board dto = new Ps_board();
 		dto.setIdx(idx);
 		dto.setTitle(title);
@@ -59,8 +68,10 @@ public class Ps_board_insertAction implements Action {
 		dto.setG_fname(g_fname);
 		dto.setComment(comment);
 		
-		dao.psb_insert(dto);	// 펫시터게시글(ps_board) insert
+		// 펫시터 게시글(ps_board)에 insert
+		dao.psb_insert(dto);
 		
+		// 알림 메세지 및 url 정의 후 alert.jsp로 이동
 		String message = "내용저장이 완료되었습니다.";
 		String message2 = "펫정보를 입력해주세요.";
 		String url = "./community/pet_insert.jsp";
@@ -71,9 +82,6 @@ public class Ps_board_insertAction implements Action {
 		
 		
 		forward.isRedirect = false;
-		//이게 문제죠. jsp로는 화면에 데이터 뿌려주러 가는건데 false 가되야하는거고
-		//만약에 다른 url로 갈거면 아래가 index.jsp가 아니죠.
-		//서블릿에서 정한 url 이 되야죠. 이거 엑셀로 계속 띄워놓는 화면인데
 		forward.url = "./error/alert.jsp";
 		return forward;
 	}
