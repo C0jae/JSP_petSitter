@@ -1,3 +1,8 @@
+/*
+ *  작성자 : 최영재
+ *  기능 : 펫시터 예약 및 결제기능
+ */
+
 package controller.action;
 
 import java.io.IOException;
@@ -34,14 +39,17 @@ public class Ps_reserveAction implements Action {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
+		// 펫시터 게시판 번호, 시작 및 종료날짜 불러오기
 		String psb_idx = request.getParameter("psb_idx");
 		
 		String date1 = request.getParameter("s_date");
 		String date2 = request.getParameter("f_date");
 
+		// 현재 상태 : 로그인 or 비로그인
 		String state = request.getParameter("state");
 		
-		 if(state != null && state.equals("notLogin")) {
+		// 로그인 상태가 아니라면 알림창 띄운 후 로그인 화면 이동
+		if(state != null && state.equals("notLogin")) {
 			 String message = "회원만 가능합니다.";
 			 String message2 = "로그인을 해주세요."; String url = "./login.do";
 		 
@@ -53,13 +61,13 @@ public class Ps_reserveAction implements Action {
 			 forward.url = "error/alert.jsp";
 			 return forward;
 		 }
-		 else {
+		// 로그인 상태일경우
+		else {
+			 // 예약자 및 펫시터 정보 불러오기
 			 int idx = Integer.parseInt(request.getParameter("idx")); // 예약자 idx
 			 int ps_idx = Integer.parseInt(request.getParameter("ps_idx")); // 펫시터 idx
 			 
-			 System.out.println("gd : " + request.getParameter("idx"));
-			 System.out.println("gd : " + request.getParameter("ps_idx"));
-			 
+			 // 시작일 or 종료일 입력을 하지 않았을경우 날짜입력 알림 띄운후 게시글 페이지로 이동
 			 if(request.getParameter("s_date") == "" || request.getParameter("f_date") == "") {
 				 String message = "날짜를 입력해주세요.";
 				 String url = "/ps_board_read.do?idx="+ps_idx+"&psb_idx="+psb_idx+"&s_date=&f_date=";
@@ -72,17 +80,21 @@ public class Ps_reserveAction implements Action {
 				 return forward;
 			 }
 			 
+			 // 파라미터로 받아온 시작일 종료일 값 Date값으로 변환
 			 Date s_date = Date.valueOf(request.getParameter("s_date"));
 			 Date f_date = Date.valueOf(request.getParameter("f_date"));
 			 
+			 // 이용요금(money), 세금(vat), 결제금액(pay) 변수 선언
 			 int money = 0;
 			 int vat = 0;
 			 int pay = 0;
 			 
+			 // 소형(small), 중형(middle), 대형(big) 변수 선언
 			 int small = 0;
 			 int middle = 0;
 			 int big = 0;
 			 
+			 // 소형, 중형, 대형 마릿수에 따른 요금 계산
 			 if (request.getParameter("small") == "")
 				 small = 0;
 			 else
@@ -121,7 +133,7 @@ public class Ps_reserveAction implements Action {
 				 return forward;
 			 }
 			 
-			 // 날짜계산
+			 // 이용 날짜 산정
 			 try {
 				 java.util.Date date11 = new SimpleDateFormat("yyyy-MM-dd").parse(date1);
 				 java.util.Date date22 = new SimpleDateFormat("yyyy-MM-dd").parse(date2);

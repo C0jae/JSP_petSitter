@@ -1,3 +1,8 @@
+/*
+ *  작성자 : 최영재
+ *  기능 : 펫시터 게시글 수정을 누르게 될 경우 수정하는 페이지로 넘겨주는 기능
+ */
+
 package controller.action;
 
 import java.io.IOException;
@@ -20,6 +25,7 @@ public class Ps_board_updateAction implements Action {
 		ActionForward foward = new ActionForward();
 		Ps_boardDao dao = Ps_boardDao.getInstance();
 		
+		// 게시글 번호와 닉네임 값 받아온 후 해당 게시글 자료를 받아와 넘겨주기
 		int psb_idx =Integer.parseInt(request.getParameter("psb_idx"));
 		String nick = request.getParameter("nick");
 		request.setAttribute("nick", nick);

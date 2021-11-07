@@ -8,8 +8,6 @@ package controller.action;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dao.PetProfileDao;
 import dao.Ps_boardDao;
-import dto.Pet;
 import dto.Ps_board;
 
 public class Ps_board_saveAction implements Action {
@@ -39,6 +35,7 @@ public class Ps_board_saveAction implements Action {
 		MultipartRequest mr = new MultipartRequest(request, path, size, "UTF-8",
 				new DefaultFileRenamePolicy());
 		
+		// 필요 데이터 파라미터 변수로 가져오기
 		int idx = Integer.parseInt(mr.getParameter("idx"));				// 회원idx
 		int psb_idx = Integer.parseInt(mr.getParameter("psb_idx"));		// 게시글 idx
 		

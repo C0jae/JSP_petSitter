@@ -1,3 +1,8 @@
+/*
+ *  작성자 : 최영재
+ *  기능 : 펫시터 게시글 작성화면으로 이동하는 기능
+ */
+
 package controller.action;
 
 import java.io.IOException;
@@ -17,9 +22,10 @@ public class Ps_board_writeAction implements Action {
 		ActionForward forward = new ActionForward();
 		Ps_boardDao dao = Ps_boardDao.getInstance();
 		
+		// 세션에 저장되어있는 회원번호를 받아와 회원정보 불러오기(펫시터)
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		Member m_getLIst = dao.m_getList(idx);	// 회원정보 불러오기(펫시터)
+		Member m_getLIst = dao.m_getList(idx);
 		request.setAttribute("petsitter", m_getLIst);
 		
 		

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="controller.action.Ps_board_deleteAction" project="project" 
+    file="/project/src/com/jcpdev/controller/action/Ps_board_deleteAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="93" y="204"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="controller.action.Ps_board_insertAction" project="project" 
+    file="/project/src/com/jcpdev/controller/action/Ps_board_insertAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="490" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="controller.action.Ps_board_readAction" project="project" 
+    file="/project/src/com/jcpdev/controller/action/Ps_board_readAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="891" y="222"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="controller.action.Ps_board_saveAction" project="project" 
+    file="/project/src/com/jcpdev/controller/action/Ps_board_saveAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="241" y="410"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="controller.action.Ps_board_updateAction" project="project" 
+    file="/project/src/com/jcpdev/controller/action/Ps_board_updateAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="673" y="429"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="controller.action.Ps_board_writeAction" project="project" 
+    file="/project/src/com/jcpdev/controller/action/Ps_board_writeAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="347" x="1062" y="443"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
