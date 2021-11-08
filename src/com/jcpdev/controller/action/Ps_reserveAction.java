@@ -61,7 +61,7 @@ public class Ps_reserveAction implements Action {
 			 forward.url = "error/alert.jsp";
 			 return forward;
 		 }
-		// 로그인 상태일경우
+		// 로그인 상태일경우 
 		else {
 			 // 예약자 및 펫시터 정보 불러오기
 			 int idx = Integer.parseInt(request.getParameter("idx")); // 예약자 idx
