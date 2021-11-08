@@ -19,6 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.Ps_boardDao;
 import dto.Ps_board;
 
+// By최영재 - 펫시터 게시글 수정내용 저장
 public class Ps_board_saveAction implements Action {
 
 	@Override

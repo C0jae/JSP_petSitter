@@ -16,6 +16,7 @@ import dao.RboardDao;
 import dto.Ps_board;
 import dto.Rboard;
 
+// By최영재 - 펫시터 게시글 삭제
 public class Ps_board_deleteAction implements Action {
 
 	@Override

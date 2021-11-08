@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Ps_boardDao;
 import dto.Member;
 
+// By최영재 - 펫시터 게시글 작성 jsp로 이동
 public class Ps_board_writeAction implements Action {
 
 	@Override

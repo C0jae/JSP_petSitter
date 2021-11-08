@@ -1,6 +1,6 @@
 /*
  *  작성자 : 최영재
- *  기능 : 예약자 결제기능
+ *  기능 : 예약 및 결제기능
  */
 
 package controller.action;
@@ -24,6 +24,7 @@ import dto.Member;
 import dto.Reservation;
 import dto.SessionDto;
 
+// By최영재 - 펫시터 예약 및 결제
 public class Ps_reserveAction implements Action {
 
 	@Override
