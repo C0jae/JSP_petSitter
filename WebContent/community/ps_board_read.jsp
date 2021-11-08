@@ -1,3 +1,8 @@
+<!-- 
+작성자 : 최영재
+기능 : 펫시터 게시글 상세보기jsp
+-->
+ 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -100,6 +105,7 @@
 					<div class="box4">
 						<div class="box2"><h4>기간</h4></div>
 						<div class="box3" style="text-align: center; font-size: 15px; display: flex;">
+							<!-- 펫시터 조회페이지에서 시작일, 종료일을 선택했다면 해당일 명시 / 그렇지 않다면 해당 페이지에서 선택 -->
 							<div style="width: 45%; text-align: center;">
 								<c:if test="${s_date == ''}">
 									<input type="date" class="dateBox" name="s_date" min="${ps_board.ps_sdate}" max="${ps_board.ps_fdate}" onchange="sdate()" id="sdate">
@@ -122,6 +128,7 @@
 						</div>
 						<div class="box2"><h4>맡기시는 반려동물</h4></div>
 						<div class="box3">
+							<!-- 펫시터가 게시글 작성시 선택한 반려견 사이즈만 반려견 수를 입력할 수 있도록 설정 -->
 							<div style="display: flex; margin-left: 10px;">
 								<div style="width: 50%;">
 									소형견(7kg 미만) : 
@@ -258,6 +265,7 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="../bottom.jsp" %>
 	<script type="text/javascript">
 		function delCheck(){
 			const yn = confirm('게시글을 삭제하시겠습니까?');
@@ -281,6 +289,7 @@
 			}
 		}
 		
+		/* 이용요금, 수수료, 결제금액 산정 */
 		function money() {
 			var small = 0;
 		    var middle = 0;
@@ -310,8 +319,6 @@
 		    money = (small * 50000) + (middle * 65000) + (big * 80000);
 		    vat = money / 10;
 		    pay = money + vat;
-		    
-			/* document.reserve.pay.value = pay; */
 		    
 		    document.getElementById("result").innerHTML = "합계금액 : " + pay + "원 (1박기준)";
 		    document.getElementById("result2").innerHTML = "비용 : " + money + "원";
